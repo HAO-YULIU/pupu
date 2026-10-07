@@ -1,1 +1,1404 @@
 
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>「屎」瓦帝尼｜第柒門</title>
+<style id="sd-hide">body{visibility:hidden}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=LXGW+WenKai+TC&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1b1410;--panel:#2a1f17;--line:#5a4430;--sand:#f3d9a4;--orange:#ff9f2e;--yellow:#ffd23f;--teal:#3fb6a8;--text:#fff6e6;--muted:#d4bf9a;--red:#e2533d}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:16px/1.7 "Noto Sans TC","PingFang TC",sans-serif;overflow:hidden;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+button{font:inherit;color:var(--text);background:#3a2b1f;border:2px solid #6b5138;border-radius:12px;padding:9px 14px;cursor:pointer;touch-action:manipulation}
+button:hover{border-color:var(--orange)}
+button:disabled{opacity:.4;cursor:default}
+.btn-y{background:linear-gradient(#ffe066,#ffb627);border-color:#c98a10;color:#3a2200;font-weight:900}
+.btn-t{background:var(--teal);border-color:#2a8a7f;color:#062420;font-weight:700}
+.big{font-size:20px;padding:12px 34px;letter-spacing:.15em}
+.scr{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;overflow:auto}
+.scr.on{display:flex}
+h1,h2,h3{margin:.2em 0;font-weight:900}
+.row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px 0}
+#end h1,#fail h1{color:var(--yellow);letter-spacing:.15em;text-shadow:3px 3px 0 #7a3a00}
+#end p,#fail p{max-width:30em;color:var(--muted)}
+.etime{font-size:22px;color:var(--yellow);margin:6px 0}
+
+/* 標題 */
+#title{flex-direction:row;gap:36px;background:radial-gradient(ellipse at 30% 30%,#5a3a1c,#1b1410 70%)}
+.tposter{height:88vh;aspect-ratio:848/1264;border-radius:10px;overflow:hidden;box-shadow:0 10px 50px #000;flex:none;transform:rotate(-1.5deg);border:6px solid #fff3d6}
+.tposter img{width:100%;height:100%;object-fit:cover;display:block}
+.tside{max-width:440px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.tbrand{color:var(--sand);letter-spacing:.35em;font-size:13px}
+.tt{white-space:nowrap;font-size:clamp(38px,5.6vw,64px);color:#fff;margin:0;line-height:1.1;text-shadow:4px 4px 0 #c45a00,0 0 30px rgba(255,160,40,.4);letter-spacing:.06em}
+.tt b{color:var(--yellow)}
+.tchap{font-size:18px;color:var(--orange);letter-spacing:.2em}
+#who{color:var(--yellow);font-size:14px;margin:0;min-height:1.4em}
+.rules{font-size:13px;color:var(--muted);background:#2a1f17;border:1px dashed #6b5138;border-radius:12px;padding:10px 14px;text-align:left;max-width:380px}
+.cast{display:flex;gap:10px;margin:6px 0}
+.cast div{font-size:12px;color:var(--muted)}
+.cast svg{width:70px;height:93px;display:block;border-radius:12px;background:#f3d9a4;border:3px solid #fff3d6}
+#ctw{display:flex;gap:8px}
+
+/* 遊戲畫面 */
+#game{justify-content:flex-start;padding:0;background:#140e0a}
+#top{width:min(100vw,1100px);display:flex;align-items:center;gap:8px;padding:6px 10px;font-size:14px;flex:none}
+#loc{flex:1;text-align:left;color:var(--sand);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+#money{color:var(--yellow);font-weight:900;font-variant-numeric:tabular-nums}
+#tm{color:var(--teal);font-variant-numeric:tabular-nums;font-weight:700}
+#tm.over{color:var(--red)}
+#top button{padding:3px 9px;font-size:15px}
+#sw{flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center}
+#scene{position:relative;width:min(100vw,1100px,calc((100dvh - 236px)*1.6));aspect-ratio:16/10;overflow:hidden;background:#000;transition:opacity .35s;border-radius:8px}
+#scene.fade{opacity:0}
+#scene.turn{animation:turn .5s}
+@keyframes turn{50%{transform:scaleX(.02);filter:brightness(0)}}
+#art{position:absolute;inset:0;width:100%;height:100%}
+#spots{position:absolute;inset:0}
+.hs{position:absolute;background:transparent;border:0;padding:0;margin:0;border-radius:10px;z-index:2}
+.hs .lb{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;font-size:12px;padding:2px 9px;border-radius:99px;background:rgba(40,25,10,.8);color:#fff3d6;opacity:0;transition:opacity .2s;pointer-events:none;font-weight:700}
+.hs:hover{outline:2px dashed rgba(255,210,63,.5)}
+.hs:hover .lb{opacity:1}
+.hs.ex .lb{opacity:.95;background:rgba(63,182,168,.9);color:#062420}
+#fl{position:absolute;inset:0;pointer-events:none;z-index:3;background:radial-gradient(circle at var(--x,50%) var(--y,55%),transparent 0,transparent var(--r,130px),rgba(0,0,0,calc(var(--d,0)*.6)) calc(var(--r,130px)*1.7),rgba(0,0,0,var(--d,0)) calc(var(--r,130px)*2.8))}
+#stage{position:absolute;left:1%;bottom:0;height:86%;z-index:5;pointer-events:none;opacity:0;transform:translateY(12px);transition:opacity .25s,transform .25s;filter:drop-shadow(0 6px 18px rgba(0,0,0,.6))}
+#stage.on{opacity:1;transform:none}
+#stage.r{left:auto;right:1%}
+#stage svg{height:100%;width:auto;display:block}
+#turnb{position:absolute;right:10px;bottom:10px;z-index:6;font-size:13px;padding:5px 12px;background:rgba(40,25,10,.75)}
+#sname{position:absolute;left:12px;top:8px;z-index:6;font-size:12px;letter-spacing:.15em;color:#fff3d6;opacity:.85;pointer-events:none;font-weight:700;text-shadow:0 1px 3px #000}
+#dlg{width:min(100vw,1100px);min-height:108px;display:flex;gap:12px;padding:10px 14px;background:linear-gradient(#3a2b1f,#241a12);border-top:3px solid #6b5138;cursor:pointer;text-align:left;flex:none}
+#dp{width:64px;height:84px;flex:none;border-radius:12px;overflow:hidden;background:#f3d9a4;border:2px solid #fff3d6}
+#dp:empty{display:none}
+#dp svg{width:100%;height:100%;display:block}
+#dt{flex:1;min-width:0}
+#dn{display:block;font-size:13px;color:var(--orange);letter-spacing:.12em;min-height:1.2em;font-weight:900}
+#dx{margin:0;font-size:17px;line-height:1.7}
+.nx{font-style:normal;color:var(--yellow);margin-left:6px;animation:bl 1s infinite}
+@keyframes bl{50%{opacity:.2}}
+#inv{width:min(100vw,1100px);display:flex;align-items:center;gap:8px;padding:6px 12px 10px;flex:none}
+#items{flex:1;display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;min-height:56px;align-items:center}
+#items:empty::before{content:'（行李箱空空的）';color:#7a6347;font-size:13px}
+.it{width:54px;height:54px;padding:3px;flex:none;background:#2a1f17;border:2px solid #5a4430;position:relative}
+.it svg{width:100%;height:100%}
+.it.sel{border-color:var(--yellow);box-shadow:0 0 12px rgba(255,210,63,.7)}
+.it.new{animation:nw 1.2s 2}
+@keyframes nw{50%{box-shadow:0 0 18px #ffd23f}}
+#exam{font-size:13px;padding:6px 10px}
+#itn{font-size:12px;color:var(--yellow);min-width:5em;text-align:right}
+
+/* 面板 */
+#modal{position:fixed;inset:0;z-index:20;background:rgba(20,10,0,.75);display:none;align-items:center;justify-content:center;padding:12px}
+#modal.on{display:flex}
+#mbox{background:linear-gradient(#3a2b1f,#2a1f17);border:3px solid #6b5138;border-radius:18px;padding:16px 18px;width:min(580px,96vw);max-height:94vh;overflow:auto;text-align:center;box-shadow:0 10px 40px #000}
+#mbox h3{color:var(--yellow);letter-spacing:.1em;font-size:20px}
+.pd{color:var(--muted);font-size:15px;margin:6px 0 10px}
+.mx{margin-top:12px}
+.paper{background:#fff8e6;color:#3a2a1a;font:19px/1.8 "LXGW WenKai TC","Noto Sans TC",sans-serif;padding:16px 20px;border-radius:4px;text-align:left;box-shadow:0 6px 16px rgba(0,0,0,.5);transform:rotate(-1deg);margin:8px auto;max-width:470px}
+.paper.trap{background:#ffe8e0}
+.paper table{width:100%;border-collapse:collapse;font-size:16px}
+.paper td{padding:2px 4px;border-bottom:1px dashed #d8c4a0}
+.paper td:last-child{text-align:right}
+.tag{display:inline-block;font-size:12px;color:#ffb8a8;border:1px solid #a04a3a;border-radius:99px;padding:0 8px;margin-top:4px}
+.kpd{width:250px;margin:10px auto}.kdisp{display:flex;gap:6px;justify-content:center;margin-bottom:10px}
+.kdisp i{width:44px;height:52px;border:2px solid #6b5138;border-radius:10px;font:900 26px/50px "Noto Sans TC";font-style:normal;background:#140e0a;color:#ff5a3d;text-shadow:0 0 8px #f00}
+.kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.kgrid button{font-size:20px;padding:10px}
+.pick{display:grid;gap:8px;margin:10px 0}.pick button{padding:10px;font-size:15px;line-height:1.5}
+.padlock{position:relative;width:230px;margin:24px auto 12px}
+.shackle{width:140px;height:100px;border:18px solid #c9cdd2;border-bottom:0;border-radius:70px 70px 0 0;margin:0 auto -8px;transition:transform .45s}
+.padlock.open .shackle{transform:translateY(-30px)}
+.lbody{background:linear-gradient(160deg,#ffcf5a,#d48a1c 70%);border-radius:18px;padding:18px 12px;box-shadow:inset 0 3px 0 #fff0b0,0 8px 18px #000}
+.wheels{display:flex;gap:6px;justify-content:center}
+.wh{display:flex;flex-direction:column;align-items:center;gap:3px}
+.wh button{padding:0 12px;font-size:12px;line-height:22px;border-radius:6px}
+.wv{background:#1b1410;border-radius:8px;width:46px;padding:2px 0;font:900 24px/1.3 "Noto Sans TC";color:#fff}
+.wv span{display:block;font-size:13px;color:#7a6347;line-height:1.2}
+.shake{animation:shk .35s}
+@keyframes shk{25%{transform:translateX(-8px)}50%{transform:translateX(8px)}75%{transform:translateX(-4px)}}
+.tiles{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:10px 0}
+.tiles button{font:900 22px "LXGW WenKai TC";width:50px;height:50px;padding:0;background:#fff8e6;color:#3a2a1a;border-color:#c9a87a}
+.tiles button.on{opacity:.3}
+.slot{min-height:56px;background:#fff8e6;color:#3a2a1a;border-radius:8px;font:900 26px/56px "LXGW WenKai TC";letter-spacing:.2em;margin:8px auto;max-width:420px}
+.maze{display:grid;gap:2px;margin:10px auto;width:min(300px,80vw);background:#5a4430;padding:2px;border-radius:6px}
+.maze i{aspect-ratio:1;background:#fff3d6;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:20px}
+.dpad{display:grid;grid-template-columns:repeat(3,56px);grid-template-rows:repeat(3,44px);gap:4px;justify-content:center;margin:8px 0}
+.dpad button{padding:0;font-size:20px}
+.nlist{text-align:left;font-size:14px;max-height:52vh;overflow:auto}
+.nlist div{border-bottom:1px dashed #5a4430;padding:8px 2px}
+.nlist b{color:var(--sand)}
+
+/* 效果 */
+#card{position:fixed;inset:0;z-index:35;background:radial-gradient(#5a3a1c,#140e0a);display:none;flex-direction:column;align-items:center;justify-content:center;color:var(--yellow);letter-spacing:.2em;text-align:center;padding:20px}
+#card.on{display:flex;animation:cf 3.4s forwards}
+#card h1{font-size:38px;text-shadow:3px 3px 0 #7a3a00}#card p{color:var(--sand);letter-spacing:.15em}
+@keyframes cf{0%{opacity:0}15%,75%{opacity:1}100%{opacity:0;visibility:hidden}}
+body.sk #game{animation:skk .09s 5}
+@keyframes skk{25%{transform:translate(-8px,4px)}50%{transform:translate(7px,-6px)}75%{transform:translate(-5px,-3px)}}
+#ts{position:fixed;top:46px;left:50%;transform:translateX(-50%);z-index:50;background:#ffd23f;color:#3a2200;padding:5px 14px;border-radius:99px;font-size:14px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none}
+#oops{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%) scale(.5);z-index:45;font:900 60px "Noto Sans TC";color:#ffd23f;text-shadow:4px 4px 0 #7a3a00;opacity:0;pointer-events:none;transition:all .25s}
+#oops.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+@media (max-width:760px){
+ #title{flex-direction:column;gap:10px;justify-content:flex-start}
+ .tposter{height:34vh}
+ .tt{font-size:44px}
+ #dx{font-size:15px}
+ #dlg{min-height:96px}
+}
+</style></head><body>
+
+<svg id="defs" width="0" height="0" style="position:absolute"><defs>
+<filter id="bl1"><feGaussianBlur stdDeviation="1"/></filter>
+<filter id="bl2"><feGaussianBlur stdDeviation="2"/></filter>
+<filter id="bl3"><feGaussianBlur stdDeviation="3"/></filter>
+<filter id="bl4"><feGaussianBlur stdDeviation="4.5"/></filter>
+<filter id="bl8"><feGaussianBlur stdDeviation="8"/></filter>
+</defs></svg>
+
+<div id="title" class="scr on">
+ <div class="tposter"><img src="https://umlnwzpmjxktfzjvcbts.supabase.co/storage/v1/object/public/covers/pupu.jpg" alt="「屎」瓦帝尼"></div>
+ <div class="tside">
+  <div class="tbrand">第柒門　×　貪險活寶旅行社</div>
+  <h1 class="tt"><b>「屎」</b>瓦帝尼</h1>
+  <div class="tchap">史瓦帝尼・我們的蜜月旅行</div>
+  <p id="who"></p>
+  <div class="cast" id="cast"></div>
+  <div class="rules">💰 品毫有 <b>5000 元</b>。花 500 元跟郝翔買提示，時間 +60 秒。<br>🙏 錢花光了，可以跟耕卉借 3000 元，時間 +15 分鐘。<br>⏱ 目標 <b>60 分鐘</b>內完成；超過 <b>120 分鐘</b>就算輸，全部重來。</div>
+  <button class="btn-y big" id="bNew">出發去蜜月！</button>
+  <div id="ctw"><button id="bCont">▶ 繼續旅行</button><button id="bDel">刪除存檔</button></div>
+  <button onclick="toLobby()">← 回到第柒門大廳</button>
+ </div>
+</div>
+
+<div id="game" class="scr">
+ <header id="top"><span id="loc"></span><span id="money"></span><span id="tm"></span><button id="bNote" title="筆記">📓</button><button id="bHint" title="跟郝翔買提示">💡</button><button id="bMenu" title="選單">☰</button></header>
+ <div id="sw"><div id="scene">
+  <svg id="art" viewBox="0 0 800 500" preserveAspectRatio="none"></svg>
+  <div id="spots"></div>
+  <div id="fl"></div>
+  <div id="stage"></div>
+  <button id="turnb">↩ 回頭</button>
+  <div id="sname"></div>
+ </div></div>
+ <div id="dlg"><div id="dp"></div><div id="dt"><b id="dn"></b><p id="dx"></p></div></div>
+ <div id="inv"><div id="items"></div><span id="itn"></span><button id="exam" disabled>🔍 檢查</button></div>
+</div>
+
+<div id="end" class="scr"><h1 id="endh">蜜月完成！</h1><p id="endp"></p><div id="endt" class="etime"></div><div class="row"><button onclick="toTitle()">回到標題</button><button class="btn-y" onclick="toLobby()">回到大廳看排行榜</button></div></div>
+<div id="fail" class="scr"><h1>蜜月……失敗了</h1><p>一百二十分鐘過去了。<br>品毫還是沒找到廁所。<br>郝翔遞上了一張新的收費單：「超時費。」<br><br>……一切，都要從頭開始。</p><div class="row"><button class="btn-y" onclick="newGame()">重新出發</button><button onclick="toLobby()">回到大廳</button></div></div>
+
+<div id="modal"><div id="mbox"></div></div>
+<div id="card"><h1></h1><p></p></div>
+<div id="oops">噗——</div>
+<div id="ts"></div>
+
+<script>
+/* 開頭與結局：原文逐字保留（只標註說話的角色，文字不更動）
+   格式：「角色|台詞」，沒有標註的就是旁白。 ph=品毫 gh=耕卉 hx=郝翔 */
+const OPENING=`飛機穿過厚厚的雲層，機身微微晃動了一下。
+品毫坐在靠窗的位置，看著窗外一片白茫茫的天空，臉上露出幸福的笑容。
+這趟旅行，是他和女朋友耕卉期待已久的蜜月旅行。
+目的地——史瓦帝尼。
+為了這次旅行，他們特地找了一間號稱「什麼都可以幫你安排」的旅行社。
+旅行社名字叫做——
+「貪險活寶旅行社」
+而負責接待他們的導遊，就是郝翔。
+說起郝翔，品毫其實有點不太放心。
+因為郝翔在旅行社裡有一個非常響亮的外號。
+大家私底下都叫他：
+「郝翔要你的錢。」
+據說只要是郝翔能收費的東西，他就絕對不會放過。
+「機場接送要收費。」
+「幫你拿行李要收費。」
+「幫你拍照也要收費。」
+甚至連「幫忙問路」都有一個奇怪的服務費。
+品毫曾經問過他：
+ph|「你們旅行社不是已經收旅費了嗎？」
+郝翔只是推了推眼鏡。
+hx|「旅費是旅費。」
+ph|「那這個呢？」
+hx|「這是我。」
+ph|「……」
+品毫第一次知道，原來一個人可以把「愛錢」活成一種職業。
+不過今天是蜜月旅行，品毫決定先不管這些。
+他轉頭看向旁邊的耕卉。
+耕卉正開心地喝著一杯飲料。
+她從小就非常喜歡喝飲料和吃甜點。
+只要看到飲料店，她就會停下來。
+只要看到甜點店，她就會說「吃一下嘛」。
+有時候明明才吃完早餐不到半小時，她還是可以問：
+gh|「前面那間蛋糕店要不要去看看？」
+而品毫則完全不同。
+他最大的興趣是釣魚。
+只要有水，他就想釣魚。
+河邊可以。
+湖邊可以。
+海邊可以。
+如果把他丟進一個沒有魚的游泳池，他可能還是會先問：
+ph|「這裡有沒有魚？」
+除此之外，他還有一個相當特殊的習慣。
+那就是——
+他非常容易肚子痛。
+非常容易。
+走五分鐘想上廁所。
+喝一口水想上廁所。
+坐十分鐘想上廁所。
+甚至有時候什麼都沒做，也會突然覺得肚子怪怪的。
+因此朋友們都曾經問過他：
+「你是不是膀胱有自己的想法？」
+而品毫總是很認真地回答：
+ph|「不是。」
+ph|「是我的腸子比較有主見。」
+就在這時，品毫突然伸手摸了一下自己的肚子。
+「……」
+臉上的笑容瞬間消失。
+耕卉注意到了他的表情。
+gh|「怎麼了？」
+ph|「沒事。」
+gh|「真的？」
+ph|「真的。」
+停頓兩秒。
+品毫又補了一句：
+ph|「只是……肚子突然有一點想念廁所。」
+耕卉看了他一眼。
+gh|「你才剛上飛機欸。」
+ph|「我知道。」
+gh|「我們剛離開台灣沒多久。」
+ph|「我知道。」
+gh|「你不會又要……」
+ph|「沒有沒有。」
+品毫趕緊搖頭。
+ph|「今天是蜜月。」
+ph|「我要給妳一個美好的回憶。」
+耕卉點點頭。
+gh|「很好。」
+品毫鬆了一口氣。
+他伸手拿出藏在包包裡的禮物。
+ph|「對了，這個給妳。」
+耕卉愣了一下。
+gh|「什麼？」
+ph|「蜜月禮物。」
+品毫把包裝慢慢拆開。
+裡面是一隻可愛的史迪奇娃娃。
+耕卉立刻露出笑容。
+gh|「史迪奇！」
+她開心地把娃娃抱到懷裡。
+gh|「你什麼時候買的？」
+ph|「偷偷買的啊。」
+gh|「很好看欸。」
+ph|「我就知道妳會喜歡。」
+品毫也露出了得意的笑容。
+就在這一瞬間——
+一陣更加強烈的腹痛突然襲來。
+ph|「……」
+品毫臉上的笑容逐漸消失。
+他低頭看著自己的肚子。
+心裡只有一個念頭。
+完了。
+他抬頭看了一眼飛機走道。
+又看了一眼耕卉。
+然後又看了一眼廁所方向。
+現在最大的問題不是「要不要去」。
+而是——
+怎麼去。
+因為他非常清楚，只要自己現在說：
+「我要去廁所。」
+耕卉一定會問：
+「你又要拉？」
+接著就是熟悉的白眼。
+這一次可是蜜月。
+品毫不想讓自己在女朋友心中的蜜月形象變成：
+「那個從頭到尾一直在找廁所的男人。」
+於是，他決定採取秘密行動。
+趁耕卉低頭研究史迪奇的時候，品毫慢慢解開安全帶。
+一點一點。
+非常慢。
+慢到像一部電影正在播放慢動作。
+他站起來。
+往走道移動了一步。
+gh|「你去哪？」
+耕卉突然抬頭。
+品毫整個人瞬間僵住。
+ph|「我……」
+gh|「嗯？」
+品毫腦中快速運轉。
+ph|「我要……去看看機艙。」
+耕卉皺眉。
+gh|「看機艙？」
+ph|「對。」
+gh|「你不是坐過飛機很多次？」
+ph|「這次不一樣。」
+gh|「哪裡不一樣？」
+品毫看著她。
+ph|「這次是蜜月。」
+耕卉沉默三秒。
+gh|「……你很奇怪。」
+品毫尷尬地笑了一下。
+ph|「我去一下。」
+說完便立刻轉身。
+他走得非常小心。
+一步。
+兩步。
+三步。
+就在他即將抵達廁所時——
+突然。
+飛機上的指示燈全部熄滅。
+整個機艙陷入黑暗。
+接著，所有螢幕同時出現一段奇怪的訊息。
+「WELCOME TO SWAZILAND」
+下一秒。
+文字忽然被刪除。
+重新出現：
+「WELCOME TO THE SECRET。」
+所有人都愣住了。
+而品毫站在廁所門前，看著眼前突然亮起的紅色電子鎖。
+原本可以直接打開的廁所門，此刻卻鎖死了。
+旁邊的螢幕顯示：
+「請輸入四位數密碼。」
+品毫愣住。
+ph|「不是吧……」
+這趟蜜月的第一道關卡。
+竟然是廁所。
+更麻煩的是。
+耕卉已經從座位上站了起來。
+gh|「品毫，你到底跑去哪裡？」
+ph|「我……」
+品毫回頭。
+ph|「我只是來……參觀一下。」
+耕卉翻了個白眼。
+gh-roll|「你最好是。」
+此時，郝翔的聲音從機艙廣播中傳來。
+hx|「各位旅客不用緊張。」
+hx|「這只是我們貪險活寶旅行社為了增加旅遊樂趣，特別準備的互動活動。」
+品毫瞪大眼睛。
+ph|「你們有病嗎？」
+郝翔繼續說：
+hx|「另外，解鎖廁所需要四位數密碼。」
+hx|「成功解鎖者——」
+hx|「可以免費使用廁所。」
+品毫突然覺得這個獎勵非常有誠意。
+只是郝翔下一句讓他臉色瞬間變黑。
+hx|「如果解不開。」
+hx|「使用廁所一次，收費五百元。」
+ph|「……」
+品毫咬牙。
+果然。
+郝翔要你的錢。
+而今天的蜜月第一個任務就是——
+在耕卉發現真相之前。
+打開廁所。`;
+
+const ENDING=`品毫慢慢走過去。
+將一路上找到的三樣物品放進門旁的裝置。
+第一樣：
+入住證明。
+第二樣：
+旅行社秘密章。
+第三樣：
+一張品毫自己寫下來的紙條。
+上面只有一句：
+「我只是想上廁所。」
+「喀。」
+門鎖解開。
+黑色的門慢慢打開。
+裡面沒有怪物。
+沒有鬼。
+沒有陷阱。
+只有一間非常普通的廁所。
+品毫站在門口。
+眼神逐漸變得感動。
+那一刻。
+彷彿全世界的光都照在他身上。
+耕卉看著他。
+gh|「所以你忙了一整晚。」
+gh|「就是為了這個？」
+品毫沉默。
+幾秒後。
+他非常認真地點頭。
+ph|「對。」
+耕卉閉上眼睛。
+深吸一口氣。
+然後——
+翻了一個非常熟悉的白眼。
+gh-roll|「品毫……」
+gh-roll|「你真的很奇怪。」
+品毫沒有生氣。
+反而笑了。
+因為他成功了。
+他沒有被女朋友發現自己偷偷跑廁所。
+他沒有付郝翔五百元。
+他甚至還破解了旅館最大的秘密。
+更重要的是。
+他完成了這次蜜月旅行中最偉大的任務。
+找到廁所。
+第二天。
+三人平安離開旅館。
+郝翔又拿出收費單。
+hx|「昨天的解謎活動，每人兩千元。」
+品毫看著他。
+ph|「不是說免費？」
+hx|「廁所免費。」
+hx|「活動不免費。」
+品毫沉默三秒。
+ph|「……」
+ph|「你真的叫郝翔要你的錢。」
+郝翔露出滿意的笑容。
+hx|「謝謝支持。」
+蜜月旅行最後幾天，品毫終於可以放鬆。
+耕卉喝了很多飲料，也吃了很多甜點。
+品毫則終於抽到時間去釣魚。
+他坐在湖邊。
+拿著釣竿。
+風吹過湖面。
+陽光灑在水面上。
+一切看起來都很平靜。
+耕卉坐在旁邊吃甜點。
+gh|「這次旅行還不錯吧？」
+品毫點點頭。
+ph|「很好。」
+gh|「最喜歡哪裡？」
+品毫想了一下。
+ph|「廁所。」
+耕卉沉默。
+gh-roll|「……」
+白眼。
+又是一個白眼。
+幾天後。
+他們搭上返回台灣的飛機。
+坐在熟悉的座位上。
+耕卉抱著那隻史迪奇娃娃。
+郝翔則在旁邊整理下一批客人的收費單。
+而品毫終於完全放鬆地靠在座椅上。
+飛機起飛。
+螢幕亮起。
+機上娛樂系統開始播放電影。
+品毫隨意按了幾下。
+最後停在一部經典電影上。
+《魔鬼終結者》
+畫面中的阿諾・史瓦辛格緩緩走過來。
+品毫盯著螢幕。
+突然想到這趟旅行的一切。
+飛機上的廁所。
+旅館的廁所。
+神秘的廁所。
+黑色的門。
+那一晚的驚險逃脫。
+以及他始終沒有放棄的信念。
+耕卉看了一眼螢幕。
+又看了看品毫。
+gh|「你在笑什麼？」
+品毫沒有回答。
+他只是看著電影裡的阿諾。
+嘴角微微上揚。
+然後在心裡替自己取了一個全新的名字。
+不是史瓦辛格。
+而是——
+阿諾・「屎」瓦辛格。
+因為他知道。
+別人來史瓦帝尼，是來度蜜月。
+別人來旅行，是為了看風景。
+只有他。
+在一場又一場驚心動魄的冒險中，
+完成了全世界最重要、最艱難、最不能拖延的任務。
+找到廁所。
+飛機逐漸穿過雲層。
+陽光再次灑進機艙。
+品毫靠回椅背。
+閉上眼睛。
+臉上露出勝利的微笑。
+他成功了。
+而他的傳奇，也正式開始。
+ph|「我會回來。」
+不是為了拯救世界。
+不是為了消滅機器人。
+而是——
+下次肚子痛的時候，我還是會找到廁所。
+——《「屎」瓦帝尼》完——`;
+function script(s){return s.split('\n').filter(x=>x.trim()).map(l=>{const m=l.match(/^(ph|gh|hx|gh-roll|ph-pain|hx-money)\|(.*)$/);if(!m)return l;const k=m[1],w=k.split('-')[0];return k.includes('-')?[w,m[2],k]:[w,m[2]]})}
+</script>
+
+<script>
+/* 第二章、第三章：原文逐句（只標註說話角色），謎題穿插在段落之間 */
+const S2={
+arrive1:`飛機落地後，品毫原本以為剛才的事情只是旅行社安排的小遊戲。
+結果他錯了。`,
+arrive2:`一下飛機，他就看到郝翔站在出口處。
+郝翔穿著印有「貪險活寶旅行社」的制服，手裡拿著一塊牌子。
+牌子上寫著：
+「品毫／耕卉」
+兩人走過去。
+郝翔笑著說：
+hx|「歡迎來到史瓦帝尼。」
+品毫看了看四周。
+ph|「你們旅行社是不是有問題？」
+郝翔沒有回答。
+反而拿出一張長長的收費單。
+hx|「這是今天的行程。」
+耕卉好奇地接過來。
+上面寫滿了各種項目。
+gh|「觀光巴士……」
+gh|「導遊服務……」
+gh|「景點門票……」
+gh|「飲料代購……」
+gh|「甜點代購……」
+耕卉眼睛瞬間亮了。
+gh-happy|「甜點代購？」
+郝翔點頭。
+hx|「當然。」
+hx|「只要加錢，我什麼都能幫你買。」
+耕卉轉頭看向品毫。
+gh-happy|「我要吃。」
+品毫只能點頭。
+ph|「買。」
+郝翔露出燦爛笑容。
+hx-money|「謝謝惠顧。」
+品毫心裡默默補充：
+郝翔要你的錢。`,
+tour:`三人開始了旅程。
+一路上，耕卉開心地喝著飲料，吃著甜點。
+郝翔則一直在介紹景點。
+只有品毫。
+一路上都在忍耐。
+因為他今天不知道為什麼，肚子特別不安分。`,
+hotel:`終於，他們來到了旅行團安排的住宿地點。
+那是一間位於郊區的老旅館。
+外觀看起來很普通。
+但是一走進去，品毫就發現這間旅館有些奇怪。
+櫃檯沒有老闆。
+牆上掛著一幅很大的旅館地圖。
+走廊上有很多房門。
+但是門牌號碼非常混亂。
+101、102、103。
+接著突然變成：
+108、109、113。
+卻沒有 104、105、106、107。
+最奇怪的是。
+走廊最深處有一扇黑色的門。
+門牌上只有一個字：
+「衛」`,
+door:`品毫盯著那扇門。
+不知道為什麼。
+他的肚子突然開始痛。
+ph-pain|「……」
+他感覺。
+那扇門後面。
+就是自己今天一直尋找的東西。
+廁所。
+可是當他偷偷靠近時，郝翔立刻出現在身後。
+hx|「那裡不能進。」
+品毫嚇了一跳。
+ph|「為什麼？」
+hx|「旅行社規定。」
+ph|「哪一條？」
+郝翔沉默了一下。
+hx|「我現在寫。」
+ph|「……」
+這個理由完全沒有說服力。`,
+night:`晚上。
+耕卉在房間裡整理今天買到的甜點。
+品毫則不停地找機會離開房間。
+但每一次都被問：
+gh|「你去哪？」
+ph|「喝水。」
+gh-roll|「你十分鐘前才喝。」
+ph|「散步。」
+gh-roll|「晚上十點了。」
+ph|「看風景。」
+gh-roll|「旅館外面一片黑。」
+品毫開始懷疑自己的演技是不是真的這麼差。
+最後，他趁耕卉睡著後，終於偷偷離開。`,
+blackdoor:`他拿著房卡。
+沿著走廊走到最深處。
+黑色的門依然緊閉。
+品毫輸入房卡。
+「嗶。」
+門沒有開。
+上面出現一個提示：
+「要進入真正的衛生間，需要找到三樣東西。」
+「一、客人的入住證明。」
+「二、旅行社的秘密章。」
+「三、你真正想隱藏的東西。」
+品毫看完，忍不住說：
+ph|「這第三個到底是什麼？」
+就在這時。
+走廊盡頭傳來聲音。
+gh|「品毫。」
+是耕卉。
+品毫嚇到差點跳起來。
+ph|「你怎麼在這？」
+耕卉皺著眉頭。
+gh|「我醒來發現你不在。」
+gh|「你到底在忙什麼？」
+品毫腦中一片空白。
+總不能直接說：
+「我在找廁所。」
+他只能硬著頭皮說：
+ph|「我在……」
+突然。
+走廊上的燈一盞一盞熄滅。
+黑暗迅速逼近。
+郝翔從另一頭走出來。
+他的手上拿著那張收費單。
+hx|「兩位。」
+hx|「現在是旅行社的特別活動。」
+他笑著說：
+hx|「想要離開旅館。」
+hx|「就必須完成遊戲。」
+耕卉愣住。
+gh|「什麼遊戲？」
+郝翔指向整條走廊。
+hx|「找到真正的出口。」
+hx|「但是有一件事情我要先提醒。」
+hx|「這間旅館有一個傳說。」
+hx|「以前曾經有一位旅客，在蜜月期間入住這裡。」
+hx|「他有一個非常奇怪的習慣。」
+hx|「不管走到哪裡。」
+hx|「都會突然想找廁所。」
+品毫聽到這裡，臉色變得非常難看。
+耕卉則慢慢轉頭。
+看向品毫。
+gh|「……」
+品毫乾笑。
+ph|「世界真小。」
+郝翔繼續說：
+hx|「後來那位旅客消失了。」
+hx|「沒有留下任何消息。」
+hx|「只留下了一本日記。」
+而這本日記。
+就藏在旅館裡。`,
+search:`品毫與耕卉開始搜尋。
+他們找到舊照片、房客名冊、地圖、房卡、收據，以及一張張看似毫無關聯的紙條。`,
+found:`慢慢地。
+品毫發現。
+那些東西全部指向同一個地方。
+那扇黑色的門。
+而那位神秘旅客的日記裡，最後只寫了一句話：
+「如果你真的想活著離開，就不要讓她知道你真正想做什麼。」
+品毫看著這句話。
+背後瞬間冒出冷汗。
+因為他知道。
+這句話根本不是在說兇手。
+也不是在說鬼。
+而是在說——
+他的廁所計畫。`};
+const S3={
+truth:`經過一整晚的調查，品毫終於發現了真相。
+原來這趟旅行從一開始就不是普通的蜜月。
+郝翔之所以帶他們來到這座偏僻旅館，是因為這裡曾經流傳一個奇怪的傳說。
+據說多年前，有一位神秘旅客來到史瓦帝尼旅行。
+那個人有一個非常特殊的能力。
+他可以在任何地方找到廁所。
+無論是荒郊野外、迷宮、地下室，甚至是正在移動的交通工具。
+他的座右銘只有一句：
+「人可以迷路，但腸子不能等。」
+多年以後，這段傳說逐漸演變成旅行社內部的一個傳統挑戰。
+只要有旅客參加這趟「秘密蜜月行程」，就會被安排一連串奇怪的測試。
+而品毫，就是這一次的主角。
+郝翔站在旅館中央。
+hx|「恭喜。」
+hx|「你已經完成大部分挑戰。」
+品毫指著自己。
+ph|「所以我現在可以上廁所了嗎？」
+郝翔搖頭。
+hx|「還差最後一關。」
+品毫差點崩潰。
+ph-pain|「到底還有幾關？」
+郝翔伸出一根手指。
+hx|「一關。」
+ph|「真的？」
+hx|「真的。」
+ph|「解完就能去？」
+hx|「可以。」
+ph|「免費？」
+hx|「……」
+郝翔想了一下。
+hx-money|「原價五百。」`,
+deal:`品毫怒吼：
+ph|「我不玩了！」
+郝翔立刻說：
+hx|「好。」
+hx|「免費。」
+品毫瞬間冷靜。
+ph|「成交。」
+最後一關開始。
+整座旅館開始變得像一座巨大的迷宮。
+房間彼此相連。
+牆上藏著密碼。
+古老的照片裡藏著數字。
+旅館地圖缺少了一大片區域。
+甚至連耕卉手上的史迪奇娃娃都藏著秘密。`,
+stitch:`品毫把史迪奇娃娃翻過來。
+發現背後縫著一張小紙條。
+上面寫著：
+「真正的出口，永遠就在你最想去的地方。」
+品毫愣住。
+耕卉也愣住。
+兩人同時看向黑色的門。`};
+</script>
+
+<script>
+/* ================= 基本 ================= */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],sl=ms=>new Promise(r=>setTimeout(r,ms));
+const LOBBY='https://hao-yuliu.github.io/escape-room/',SK='pupu_v1_save',GOAL=3600,LIMIT=7200,HINT_COST=500,LOAN=3000;
+let S=null,busy=0,sel=null,snd=true,onTitle=true;
+const NM={ph:'品毫',gh:'耕卉',hx:'郝翔'};
+const fmt=s=>{const h=s/3600|0,m=(s%3600)/60|0,x=s%60,p=n=>String(n).padStart(2,'0');return(h?h+':'+p(m):p(m))+':'+p(x)};
+function toast(t){const e=$('#ts');e.textContent=t;e.style.opacity=1;clearTimeout(e._t);e._t=setTimeout(()=>e.style.opacity=0,1800)}
+function show(id){$$('.scr').forEach(e=>e.classList.remove('on'));$('#'+id).classList.add('on');onTitle=id!=='game'}
+function toLobby(){save();location.href=LOBBY}
+
+/* ================= 音效 ================= */
+let A=null,master=null,amb=null;
+function ac(){if(!A){try{A=new(window.AudioContext||window.webkitAudioContext)();master=A.createGain();master.connect(A.destination)}catch(e){}}if(A&&A.state==='suspended')A.resume();return A}
+function tone(f,d=.4,ty='sine',v=.2,w=0){const a=ac();if(!a||!snd)return;const t=a.currentTime+w,o=a.createOscillator(),g=a.createGain();o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+.05)}
+function nz(d=.3,v=.3,f=1000,q=1,w=0){const a=ac();if(!a||!snd)return;const t=a.currentTime+w,n=Math.floor(a.sampleRate*d),b=a.createBuffer(1,n,a.sampleRate),x=b.getChannelData(0);for(let i=0;i<n;i++)x[i]=Math.random()*2-1;const s=a.createBufferSource(),fl=a.createBiquadFilter(),g=a.createGain();s.buffer=b;fl.type='bandpass';fl.frequency.value=f;fl.Q.value=q;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);s.connect(fl);fl.connect(g);g.connect(master);s.start(t)}
+const click=()=>{nz(.025,.4,3200,2);navigator.vibrate&&navigator.vibrate(4)};
+const ding=()=>{tone(880,.25,'sine',.2);tone(1320,.35,'sine',.15,.12)};
+const coin=()=>{tone(1200,.08,'square',.08);tone(1800,.2,'square',.08,.08)};
+const steps=()=>{for(let i=0;i<3;i++)nz(.07,.18,600,.8,i*.22)};
+const growl=()=>{const a=ac();if(!a||!snd)return;const o=a.createOscillator(),g=a.createGain(),t=a.currentTime;o.type='sawtooth';o.frequency.setValueAtTime(90,t);o.frequency.linearRampToValueAtTime(55,t+.7);g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.001,t+.8);o.connect(g);g.connect(master);o.start(t);o.stop(t+.85)};
+const toot=()=>{const a=ac();if(!a||!snd)return;const o=a.createOscillator(),g=a.createGain(),t=a.currentTime;o.type='square';o.frequency.setValueAtTime(110,t);o.frequency.exponentialRampToValueAtTime(60,t+.45);const l=a.createOscillator(),lg=a.createGain();l.frequency.value=28;lg.gain.value=25;l.connect(lg);lg.connect(o.frequency);g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.001,t+.5);o.connect(g);g.connect(master);o.start(t);l.start(t);o.stop(t+.55);l.stop(t+.55)};
+function ambient(kind){const a=ac();if(!a)return;if(!amb){const n=a.createBuffer(1,a.sampleRate*2,a.sampleRate),d=n.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;const s=a.createBufferSource();s.buffer=n;s.loop=true;amb={f:a.createBiquadFilter(),g:a.createGain()};amb.f.type='lowpass';s.connect(amb.f);amb.f.connect(amb.g);amb.g.connect(master);amb.g.gain.value=0;s.start()}
+ const k={plane:[300,.07],hotel:[900,.012],night:[600,.008],none:[300,0]}[kind]||[300,0];amb.f.frequency.setTargetAtTime(k[0],a.currentTime,.5);amb.g.gain.setTargetAtTime(snd?k[1]:0,a.currentTime,.8)}
+
+/* ================= 狀態 / 存檔 ================= */
+function fresh(){return{sc:'seat',view:'f',inv:[],f:{},money:5000,t:0,rid:null,notes:[],on:1,act:'第一章',hints:0,borrows:0}}
+function save(force){try{if(!S||!S.on||(busy&&!force))return;localStorage.setItem(SK,JSON.stringify(S))}catch(e){}}
+function clr(){try{localStorage.removeItem(SK)}catch(e){}}
+function hasSave(){try{return!!localStorage.getItem(SK)}catch(e){return false}}
+function hud(){$('#money').textContent='💰 '+S.money.toLocaleString();const e=$('#tm');e.textContent='⏱ '+fmt(S.t)+(S.t>GOAL?'（超時）':' / 60:00');e.classList.toggle('over',S.t>GOAL)}
+setInterval(()=>{if(S&&S.on&&!onTitle&&!document.hidden){S.t++;hud();checkTime()}},1000);
+setInterval(()=>save(),5000);addEventListener('pagehide',()=>save(1));
+/* 超過 120 分鐘：判定失敗，存檔清除，全部重來 */
+function checkTime(){if(S&&S.on&&S.t>=LIMIT){timeUp();return true}return false}
+function timeUp(){busy=0;tapR=null;closePanels();S.on=0;ambient('none');if(window.SD)SD.fail(S.rid,S.t,S.hints||0,S.borrows||0);clr();show('fail')}
+
+/* ================= 對話 ================= */
+let tapR=null;
+$('#dlg').addEventListener('pointerdown',()=>tapR&&tapR());
+$('#scene').addEventListener('pointerdown',()=>tapR&&tapR());
+document.addEventListener('keydown',e=>{if((e.key===' '||e.key==='Enter')&&tapR){e.preventDefault();tapR()}});
+const DEFM={ph:'ph-norm',gh:'gh-norm',hx:'hx-norm'};
+const use=k=>`<svg viewBox="0 0 300 400"><use href="#P-${k}"/></svg>`;
+function line(L){
+ if(typeof L==='string'){$('#dp').innerHTML='';$('#dn').textContent='';$('#stage').classList.remove('on');return L}
+ const [w,t,m]=L,k=m||DEFM[w];$('#dp').innerHTML=use(k);$('#dn').textContent=NM[w];const st=$('#stage');st.innerHTML=use(k);st.classList.toggle('r',w!=='ph');st.classList.add('on');
+ if(k==='gh-roll')tone(300,.3,'sine',.08);if(k==='ph-pain')growl();return t}
+async function typeT(t){const el=$('#dx');el.textContent='';let done=false;tapR=()=>{done=true};for(const c of t){if(done)break;el.textContent+=c;await sl(20)}el.textContent=t;tapR=null}
+const waitTap=()=>new Promise(r=>{tapR=()=>{tapR=null;r()}});
+async function say(L){busy++;L=[].concat(L);for(const x of L){const t=line(x);await typeT(t);$('#dx').insertAdjacentHTML('beforeend','<i class="nx">▼</i>');await waitTap()}$('#dx .nx')?.remove();$('#stage').classList.remove('on');busy=Math.max(0,busy-1)}
+function msg(t){tapR=null;line(t);$('#dx').textContent=t}
+async function oops(m){const e=$('#oops');e.textContent=['噗——','咕嚕嚕……','啊——','（白眼）'][Math.random()*4|0];e.classList.add('on');toot();document.body.classList.add('sk');setTimeout(()=>{e.classList.remove('on');document.body.classList.remove('sk')},700);msg(m)}
+function card(a,b){const e=$('#card');e.querySelector('h1').textContent=a;e.querySelector('p').textContent=b;e.classList.remove('on');void e.offsetWidth;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),3500);return sl(3300)}
+
+/* ================= 物品 ================= */
+const IT={
+ mag:{n:'機上雜誌',i:'mag',d:'封面寫著：「史瓦帝尼小百科」。'},
+ feelist:{n:'郝翔的收費單',i:'paper',d:'長長一張，寫滿了各種收費項目。'},
+ cash:{n:'里蘭吉尼紙鈔',i:'cash',d:'剛換好的史瓦帝尼錢：里蘭吉尼（Emalangeni，符號 E）。'},
+ candle:{n:'史瓦濟蠟燭',i:'candle',d:'Malkerns 蠟燭店買的手工蠟燭，條紋跟國旗一樣。'},
+ match:{n:'火柴盒',i:'match',d:'蠟燭店送的火柴。盒子上印著一隻犀牛。'},
+ lit:{n:'點亮的蠟燭',i:'lit',d:'小小的火光，照得到眼前一點點的地方。'},
+ glass:{n:'玻璃鱷魚',i:'glass',d:'Ngwenya 玻璃工廠用回收玻璃做的小鱷魚。耕卉說很可愛。'},
+ cert:{n:'入住證明',i:'cert',d:'「入住證明：品毫／耕卉。房號 113。」第一樣東西。'},
+ card113:{n:'113 房卡',i:'card',d:'蜜月套房的房卡。'},
+ tphoto:{n:'旅客的舊照片',i:'photo',d:'神秘旅客在史瓦帝尼各地拍的照片，每張背面都寫了日期。'},
+ receipt:{n:'三張收據',i:'paper',d:'神秘旅客留下的收據，上面沒有日期。'},
+ diary:{n:'神秘旅客的日記',i:'book',d:'封面寫著：「人可以迷路，但腸子不能等。」'},
+ stamp:{n:'旅行社秘密章',i:'stamp',d:'刻著「貪險活寶」的木頭印章。第二樣東西。'},
+ pieceA:{n:'地圖碎片：Hhohho',i:'map',d:'旅館地圖的碎片，背面寫著「Hhohho」。'},
+ pieceB:{n:'地圖碎片：Manzini',i:'map',d:'旅館地圖的碎片，背面寫著「Manzini」。'},
+ pieceC:{n:'地圖碎片：Lubombo',i:'map',d:'旅館地圖的碎片，背面寫著「Lubombo」。'},
+ stitch:{n:'史迪奇娃娃',i:'stitch',d:'耕卉的蜜月禮物。'},
+ note3:{n:'品毫寫的紙條',i:'paper',d:'「我只是想上廁所。」第三樣東西。'}
+};
+const has=k=>S.inv.includes(k);
+function get(k,quiet){if(!has(k))S.inv.push(k);renderInv(k);if(!quiet){toast('獲得：'+IT[k].n);ding()}}
+function take(k){S.inv=S.inv.filter(x=>x!==k);if(sel===k)sel=null;renderInv()}
+function renderInv(nw){const e=$('#items');e.innerHTML='';S.inv.forEach(k=>{const b=document.createElement('button');b.className='it'+(sel===k?' sel':'')+(nw===k?' new':'');b.title=IT[k].n;b.innerHTML=icon(IT[k].i);b.onclick=()=>{sel=sel===k?null:k;renderInv();if(sel)msg('（選取了「'+IT[k].n+'」。點畫面上的東西來使用，或按「檢查」仔細看。）')};e.append(b)});$('#itn').textContent=sel?IT[sel].n:'';$('#exam').disabled=!sel}
+$('#exam').onclick=()=>{if(sel&&!busy)examine(sel)};
+
+/* ================= 筆記 ================= */
+function note(k,t,x,trap){if(S.notes.some(n=>n.k===k))return;S.notes.push({k,t,x,trap:!!trap});toast('📓 已記入筆記')}
+$('#bNote').onclick=()=>{if(busy)return;panel('筆記',`<div class="nlist">${S.notes.length?S.notes.slice().reverse().map(n=>`<div><b>${n.t}</b><br>${n.x}</div>`).join(''):'<div>還沒有記下任何線索。</div>'}</div>`)};
+
+/* ================= 面板 ================= */
+function panel(title,body,mount,o={}){return new Promise(res=>{const m=$('#modal');m.classList.add('on');busy++;
+ $('#mbox').innerHTML=(title?`<h3>${title}</h3>`:'')+`<div class="mb">${body}</div>`+(o.noClose?'':`<button class="mx">${o.closeText||'關閉'}</button>`);
+ let fin=false;const done=v=>{if(fin)return;fin=true;m.classList.remove('on');busy=Math.max(0,busy-1);res(v)};
+ $('#mbox .mx')&&($('#mbox .mx').onclick=()=>done(false));mount&&mount($('#mbox .mb'),done)})}
+function closePanels(){$('#modal').classList.remove('on')}
+function doc(k,title,html,text){note(k,title,text||html.replace(/<[^>]+>/g,' '));return panel(title,`<div class="paper">${html}</div>`)}
+function confirmP(t,yes='好',no='算了'){return new Promise(r=>panel('',`<p class="pd" style="font-size:16px;color:#fff6e6">${t}</p><div class="row"><button class="btn-y" id="cy">${yes}</button><button id="cn">${no}</button></div>`,(el,done)=>{el.querySelector('#cy').onclick=()=>{done(1);r(true)};el.querySelector('#cn').onclick=()=>{done(0);r(false)}},{noClose:true}))}
+function choose(text,opts){return new Promise(r=>panel('',`<p class="pd" style="font-size:17px;color:#fff6e6">${text}</p><div class="pick">${opts.map((o,i)=>`<button data-i="${i}">${o}</button>`).join('')}</div>`,(el,done)=>el.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{done();r(+b.dataset.i)}),{noClose:true}))}
+
+/* ================= 錢：跟郝翔買提示、跟耕卉借錢 ================= */
+async function buyHint(){if(busy)return;
+ if(S.money<HINT_COST){if(!await confirmP(`品毫的錢包只剩 ${S.money} 元，不夠買提示了。<br>要跟耕卉借 ${LOAN} 元嗎？<br><small>（逃脫時間 +15 分鐘）</small>`,'跟耕卉借錢','算了'))return;
+  S.money+=LOAN;S.t+=900;S.borrows=(S.borrows||0)+1;hud();coin();save(1);if(checkTime())return;
+  await say([['gh',['「又借？」','「你到底把錢花到哪裡去了？」','「蜜月才剛開始欸。」'][Math.min(S.borrows-1,2)],'gh-roll'],['ph','「……投資。」'],['gh',`「借你 ${LOAN}。回台灣要還喔。」`]]);return}
+ if(!await confirmP(`花 ${HINT_COST} 元跟郝翔買一個提示？<br><small>（逃脫時間 +60 秒，現在有 ${S.money} 元）</small>`,'買！','再想想'))return;
+ S.money-=HINT_COST;S.t+=60;S.hints=(S.hints||0)+1;hud();coin();save(1);if(checkTime())return;
+ await say([['hx',['「謝謝惠顧。」','「錢收到了。提示是這樣的——」','「你真是我最喜歡的客人。」'][S.hints%3],'hx-money'],['hx','「'+hint()+'」']])}
+$('#bHint').onclick=buyHint;
+</script>
+
+<script>
+/* ================= Q 版角色（參考照片特徵繪製，非照片） ================= */
+const OL='#3a2a22';
+const CH={
+ ph:{skin:'#ffe1c8',cheek:'#ffb3a0',hair:'#1f1a18',hair2:'#3a3330'},
+ gh:{skin:'#fff0e6',cheek:'#ff9aa8',hair:'#1a1416',hair2:'#3a2e30'},
+ hx:{skin:'#ffe0c6',cheek:'#ffb3a0',hair:'#c9c9cf',hair2:'#f0f0f4'}
+};
+const MD={'ph-norm':['ph','dot','smile'],'ph-pain':['ph','pain','wavy'],'ph-happy':['ph','happy','open'],
+ 'gh-norm':['gh','big','smile'],'gh-happy':['gh','happy','open'],'gh-roll':['gh','roll','flat'],
+ 'hx-norm':['hx','dot','smirk'],'hx-money':['hx','money','grin']};
+function cEyes(t,id){const L=id==='gh'?[112,192]:[115,185],y=id==='gh'?190:192;
+ const pair=f=>L.map(x=>f(x)).join('');
+ switch(t){
+  case'big':return pair(x=>`<ellipse cx="${x}" cy="${y}" rx="17" ry="22" fill="#2b1d1a"/><ellipse cx="${x}" cy="${y+6}" rx="12" ry="12" fill="#6b3a2a"/><circle cx="${x-6}" cy="${y-8}" r="7" fill="#fff"/><circle cx="${x+6}" cy="${y+8}" r="3" fill="#fff"/><path d="M${x-19} ${y-18}q8-8 18-6M${x+17} ${y-16}l6-6" stroke="#2b1d1a" stroke-width="3" fill="none" stroke-linecap="round"/>`);
+  case'dot':return pair(x=>`<ellipse cx="${x}" cy="${y}" rx="11" ry="14" fill="#2b1d1a"/><circle cx="${x-4}" cy="${y-5}" r="4.5" fill="#fff"/><circle cx="${x+4}" cy="${y+5}" r="2" fill="#fff"/>`);
+  case'happy':return pair(x=>`<path d="M${x-14} ${y+4}q14-20 28 0" stroke="#2b1d1a" stroke-width="5" fill="none" stroke-linecap="round"/>`);
+  case'pain':return pair((x,i)=>`<path d="M${x-12} ${y-8}l20 8-20 8" stroke="#2b1d1a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" ${x>150?`transform="translate(${2*x} 0) scale(-1 1)"`:''}/>`);
+  case'roll':return pair(x=>`<ellipse cx="${x}" cy="${y}" rx="16" ry="20" fill="#fff" stroke="#2b1d1a" stroke-width="3"/><ellipse cx="${x}" cy="${y-13}" rx="9" ry="6" fill="#2b1d1a"/>`);
+  case'money':return pair(x=>`<circle cx="${x}" cy="${y}" r="17" fill="#ffd23f" stroke="#c98a10" stroke-width="3"/><text x="${x}" y="${y+9}" font-size="26" font-weight="900" text-anchor="middle" fill="#7a5200">$</text>`)}}
+function cMouth(t){switch(t){
+ case'smile':return`<path d="M138 232q12 12 24 0" stroke="${OL}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+ case'open':return`<path d="M134 228q16 26 32 0Z" fill="#c4404a" stroke="${OL}" stroke-width="3.5" stroke-linejoin="round"/><path d="M142 240q8 6 16 0" fill="#ff8a95"/>`;
+ case'wavy':return`<path d="M132 236q6-8 12 0t12 0t12 0" stroke="${OL}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+ case'flat':return`<path d="M138 236h24" stroke="${OL}" stroke-width="4.5" stroke-linecap="round"/>`;
+ case'smirk':return`<path d="M136 236q16 6 28-8" stroke="${OL}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+ case'grin':return`<path d="M128 226q22 32 44 0Z" fill="#fff" stroke="${OL}" stroke-width="3.5" stroke-linejoin="round"/><path d="M128 226h44" stroke="${OL}" stroke-width="2"/>`}}
+function cBody(id){switch(id){
+ case'ph':{let s=`<clipPath id="cbph"><path d="M78 400q0-90 72-100q72 10 72 100Z"/></clipPath><path d="M78 400q0-90 72-100q72 10 72 100Z" fill="#232328" stroke="${OL}" stroke-width="5"/><g clip-path="url(#cbph)" stroke="#f2f2f2" stroke-width="3" opacity=".9">`;for(let x=84;x<222;x+=13)s+=`<path d="M${x} 290V400"/>`;
+  return s+`</g><path d="M128 304l22 26 22-26" fill="#2e2e34" stroke="#f2f2f2" stroke-width="2.5" stroke-linejoin="round"/><circle cx="150" cy="350" r="4" fill="#fff"/><circle cx="150" cy="378" r="4" fill="#fff"/>`}
+ case'gh':return`<path d="M70 400q0-92 80-102q80 10 80 102Z" fill="#d42f3a" stroke="${OL}" stroke-width="5"/><path d="M92 330q58-26 116 0" stroke="#ffcf5a" stroke-width="7" fill="none"/><path d="M118 300q32 16 64 0" fill="#fff0e6" stroke="${OL}" stroke-width="4"/><circle cx="150" cy="352" r="7" fill="#ffcf5a" stroke="${OL}" stroke-width="2"/>`;
+ case'hx':return`<path d="M78 400q0-90 72-100q72 10 72 100Z" fill="#fbfbf8" stroke="${OL}" stroke-width="5"/><path d="M126 304q24 14 48 0" fill="none" stroke="#ddd" stroke-width="5"/><path d="M130 306l10 56M170 306l-10 56" stroke="#e2402a" stroke-width="5"/><rect x="128" y="358" width="44" height="34" rx="6" fill="#ffcf5a" stroke="${OL}" stroke-width="3"/><text x="150" y="381" font-size="12" font-weight="900" text-anchor="middle" fill="#7a3a00">貪險</text>`}}
+function cHairBack(id,c){if(id==='gh')return`<path d="M52 190q-10-130 98-134q108 4 98 134l12 120q-30 18-60 4l-10-90h-80l-10 90q-30 14-60-4Z" fill="${c.hair}" stroke="${OL}" stroke-width="5"/><circle cx="150" cy="52" r="34" fill="${c.hair}" stroke="${OL}" stroke-width="5"/>`;
+ if(id==='ph')return`<path d="M46 200q-8-150 104-150q112 0 104 150Z" fill="${c.hair}" stroke="${OL}" stroke-width="5"/>`;
+ return`<path d="M56 196q-6-136 94-138q100 2 94 138Z" fill="${c.hair}" stroke="${OL}" stroke-width="5"/>`}
+function cHairFront(id,c){switch(id){
+ case'ph':return`<path d="M50 176q-4-128 100-130q104 2 100 130q-20-10-30-34q-14 18-36 10q-14 14-34 2q-20 14-36-4q-14 22-34 14q-6 10-30 12Z" fill="${c.hair}" stroke="${OL}" stroke-width="5" stroke-linejoin="round"/><path d="M96 70q-10 30-6 56M150 56v60M204 70q10 30 6 56" stroke="${c.hair2}" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>`;
+ case'gh':return`<path d="M56 172q-2-118 96-120q96 4 94 118q-34-48-92-56q-46 18-98 58Z" fill="${c.hair}" stroke="${OL}" stroke-width="5" stroke-linejoin="round"/><path d="M60 160q-14 70 2 150" stroke="${c.hair}" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M240 160q14 70-2 150" stroke="${c.hair}" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M168 40l46-24M176 54l44-6" stroke="#e8b83a" stroke-width="5" stroke-linecap="round"/><circle cx="216" cy="15" r="8" fill="#ffd23f" stroke="${OL}" stroke-width="2.5"/><circle cx="224" cy="48" r="6" fill="#ffd23f" stroke="${OL}" stroke-width="2.5"/><path d="M224 54v16" stroke="#e8b83a" stroke-width="2"/><circle cx="224" cy="73" r="4" fill="#fff" stroke="${OL}" stroke-width="1.5"/><path d="M110 32q40-20 80 0" stroke="#e8b83a" stroke-width="4" fill="none"/><path d="M110 90q30-12 70-8" stroke="${c.hair2}" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>`;
+ case'hx':return`<path d="M58 170q-4-112 92-116q100 0 92 112q-14-40-40-54q-30 20-70 6q-30-6-52 16q-14 14-22 36Z" fill="${c.hair}" stroke="${OL}" stroke-width="5" stroke-linejoin="round"/><path d="M84 96q50-56 140-30q-60-6-104 34Z" fill="${c.hair2}" stroke="${OL}" stroke-width="4" stroke-linejoin="round"/>`}}
+function cGlasses(id){if(id==='ph')return`<g fill="#fff" fill-opacity=".18" stroke="#9a9aa2" stroke-width="4"><circle cx="115" cy="192" r="30"/><circle cx="185" cy="192" r="30"/></g><path d="M145 190q5-5 10 0" stroke="#9a9aa2" stroke-width="4" fill="none"/>`;
+ if(id==='hx')return`<g fill="#fff" fill-opacity=".15" stroke="#111" stroke-width="7"><rect x="82" y="170" width="62" height="44" rx="10"/><rect x="156" y="170" width="62" height="44" rx="10"/></g><path d="M144 190h12" stroke="#111" stroke-width="6"/>`;return''}
+function portrait(key){const [id,eye,mo]=MD[key],c=CH[id];
+ let s=cHairBack(id,c)+cBody(id);
+ s+=`<ellipse cx="150" cy="182" rx="${id==='gh'?94:100}" ry="${id==='gh'?96:98}" fill="${c.skin}" stroke="${OL}" stroke-width="5"/>`;
+ if(id==='hx')s+=`<circle cx="52" cy="200" r="16" fill="${c.skin}" stroke="${OL}" stroke-width="4"/><circle cx="48" cy="222" r="6" fill="none" stroke="#c9c9cf" stroke-width="3"/>`;
+ s+=`<ellipse cx="96" cy="222" rx="18" ry="10" fill="${c.cheek}" opacity=".75"/><ellipse cx="204" cy="222" rx="18" ry="10" fill="${c.cheek}" opacity=".75"/>`;
+ s+=cHairFront(id,c)+cEyes(eye,id)+cGlasses(id)+cMouth(mo);
+ if(id==='gh')s+=`<path d="M137 232q13 6 26 0" stroke="#d42f3a" stroke-width="3" fill="none" opacity="${mo==='smile'?1:0}"/>`;
+ if(eye==='pain')s+=`<path d="M232 120q12 18 0 28q-12-10 0-28Z" fill="#8fd4ff" stroke="${OL}" stroke-width="3"/><path d="M60 140q8 12 0 18q-8-6 0-18Z" fill="#8fd4ff" stroke="${OL}" stroke-width="2.5"/><path d="M110 270q40 -10 80 0" stroke="#a0d040" stroke-width="0"/>`;
+ if(eye==='roll')s+=`<path d="M236 90l14-14M250 110l18-4M228 70l4-18" stroke="${OL}" stroke-width="4" stroke-linecap="round"/>`;
+ if(eye==='money')s+=`<circle cx="262" cy="96" r="18" fill="#ffd23f" stroke="#c98a10" stroke-width="3"/><text x="262" y="104" font-size="20" font-weight="900" text-anchor="middle" fill="#7a5200">E</text>`;
+ if(eye==='happy'&&id==='gh')s+=`<path d="M244 120l6-12 6 12-12-6h12Z" fill="#ff7aa8"/><path d="M40 150l5-10 5 10-10-5h10Z" fill="#ff7aa8"/>`;
+ return s}
+function buildPortraits(){const d=$('#defs defs');let s='';for(const k in MD)s+=`<symbol id="P-${k}" viewBox="0 0 300 400">${portrait(k)}</symbol>`;d.insertAdjacentHTML('beforeend',s)}
+
+/* ================= 物品圖示 ================= */
+function icon(t){const b=c=>`<svg viewBox="0 0 48 48">${c}</svg>`;switch(t){
+ case'paper':return b('<rect x="10" y="6" width="28" height="36" rx="2" fill="#fff8e6" stroke="#a0896a" stroke-width="1.5"/><path d="M15 14h18M15 20h18M15 26h18M15 32h12" stroke="#a0896a" stroke-width="2"/>');
+ case'mag':return b('<rect x="9" y="6" width="30" height="36" rx="2" fill="#3fb6a8"/><rect x="13" y="10" width="22" height="14" fill="#ffd23f"/><path d="M13 28h22M13 33h16" stroke="#fff" stroke-width="2"/><path d="M14 12h20v4H14Z" fill="#2a4a80"/><rect x="14" y="16" width="20" height="2" fill="#e2402a"/>');
+ case'phones':return b('<path d="M10 28a14 14 0 0 1 28 0" fill="none" stroke="#333" stroke-width="4"/><rect x="6" y="26" width="9" height="14" rx="4" fill="#ff7aa8"/><rect x="33" y="26" width="9" height="14" rx="4" fill="#ff7aa8"/>');
+ case'cert':return b('<rect x="6" y="9" width="36" height="30" rx="3" fill="#fff8e6" stroke="#3fb6a8" stroke-width="2"/><path d="M12 17h24M12 23h18" stroke="#a0896a" stroke-width="2"/><circle cx="33" cy="31" r="5" fill="#e2533d"/>');
+ case'card':return b('<rect x="6" y="12" width="36" height="24" rx="3" fill="#ffcf5a"/><rect x="6" y="17" width="36" height="5" fill="#3a2a1a"/>');
+ case'cash':return b('<rect x="5" y="13" width="38" height="22" rx="3" fill="#8fd07a" stroke="#4a8a3a" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#4a8a3a"/><text x="24" y="28" font-size="9" font-weight="900" text-anchor="middle" fill="#fff">E</text>');
+ case'candle':return b('<rect x="16" y="16" width="16" height="26" rx="3" fill="#3a6fd8"/><rect x="16" y="22" width="16" height="4" fill="#ffd23f"/><rect x="16" y="26" width="16" height="6" fill="#e2402a"/><rect x="16" y="32" width="16" height="4" fill="#ffd23f"/><path d="M24 16v-4" stroke="#333" stroke-width="2"/>');
+ case'lit':return b('<rect x="16" y="18" width="16" height="24" rx="3" fill="#3a6fd8"/><rect x="16" y="24" width="16" height="4" fill="#ffd23f"/><rect x="16" y="28" width="16" height="6" fill="#e2402a"/><path d="M24 4c5 6 4 11 0 13c-4-2-5-7 0-13Z" fill="#ffb627"/><circle cx="24" cy="12" r="10" fill="#ffd23f" opacity=".35"/>');
+ case'match':return b('<rect x="8" y="16" width="32" height="18" rx="2" fill="#e2402a"/><rect x="11" y="19" width="26" height="12" fill="#fff8e6"/><path d="M30 10l8 14" stroke="#d8a060" stroke-width="3"/><circle cx="29" cy="9" r="3" fill="#a02020"/>');
+ case'glass':return b('<path d="M8 32c6-8 18-10 28-6l6-3-3 6c-2 6-14 10-26 8Z" fill="#7fd6c8" fill-opacity=".8" stroke="#3a9a8a" stroke-width="2"/><circle cx="34" cy="27" r="1.5" fill="#123"/>');
+ case'photo':return b('<rect x="6" y="9" width="36" height="30" fill="#fff8e6" stroke="#a0896a"/><rect x="9" y="12" width="30" height="20" fill="#8fc7e8"/><path d="M9 28l9-8 7 6 6-5 8 9Z" fill="#4a8a3a"/>');
+ case'book':return b('<rect x="10" y="7" width="28" height="35" rx="2" fill="#7a4a24"/><rect x="14" y="11" width="20" height="10" fill="#fff8e6"/><path d="M24 26c-4 0-6 4-4 7 2 2 6 2 8 0 2-3 0-7-4-7Z" fill="#c98a4a"/>');
+ case'stamp':return b('<rect x="18" y="6" width="12" height="18" rx="5" fill="#a0603a"/><rect x="10" y="24" width="28" height="10" rx="2" fill="#7a4a24"/><rect x="8" y="34" width="32" height="6" fill="#e2533d"/>');
+ case'map':return b('<path d="M6 10l12-4 12 4 12-4v32l-12 4-12-4-12 4Z" fill="#f3d9a4" stroke="#a0896a" stroke-width="2"/><path d="M12 30l8-8 6 4 8-10" stroke="#e2533d" stroke-width="2.5" fill="none" stroke-dasharray="3 2"/>');
+ case'stitch':return b('<ellipse cx="24" cy="30" rx="12" ry="12" fill="#4a7ad8"/><ellipse cx="24" cy="20" rx="13" ry="10" fill="#5a8ae8"/><path d="M11 16l-8-8 10 4M37 16l8-8-10 4" fill="#5a8ae8"/><circle cx="19" cy="20" r="3.5" fill="#111"/><circle cx="29" cy="20" r="3.5" fill="#111"/><ellipse cx="24" cy="25" rx="4" ry="2.5" fill="#223"/>');
+ default:return b('<circle cx="24" cy="24" r="12" fill="#888"/>')}}
+</script>
+
+<script>
+/* ================= 場景引擎 ================= */
+const SC={};
+const cur=()=>{const sc=SC[S.sc];return S.view==='b'&&sc.back?sc.back:sc};
+function render(){const sc=SC[S.sc],v=cur();
+ $('#art').innerHTML=SDEFS+v.art();const sp=$('#spots');sp.innerHTML='';
+ v.spots().forEach(s=>{const b=document.createElement('button');b.className='hs'+(s.to||s.ex?' ex':'');const [x,y,w,h]=s.r;b.style.cssText=`left:${x/8}%;top:${y/5}%;width:${w/8}%;height:${h/5}%`;b.innerHTML=`<span class="lb">${s.l}</span>`;b.onclick=e=>{e.stopPropagation();act(s)};sp.append(b)});
+ $('#loc').textContent=S.act+'｜'+sc.name;$('#sname').textContent=sc.name;$('#turnb').style.display=sc.back?'':'none';$('#turnb').textContent=S.view==='b'?'↪ 轉回來':'↩ 回頭';
+ $('#fl').style.setProperty('--d',(S.f.ch3&&sc.hotel)?.7:(sc.hotel&&S.f.dark)?(has('lit')?.72:.96):(sc.dark??0));hud();renderInv()}
+async function act(s){if(busy)return;ac();
+ if(SC[S.sc].hotel&&S.f.dark&&!has('lit')&&!s.to&&!/大廳|走廊|113/.test(s.l||''))return msg('太黑了，什麼都看不到……身上有能照明的東西嗎？（檢查一下行李）');
+ if(sel){const u=s.u&&s.u[sel];if(u){const k=sel;sel=null;renderInv();await u(k);save();return}msg('這裡用不到「'+IT[sel].n+'」。');sel=null;renderInv();return}
+ if(s.to){const b=s.need&&s.need();if(b)return msg(b);return go(s.to)}
+ await s.a();save()}
+async function go(id){busy++;$('#scene').classList.add('fade');steps();await sl(380);S.sc=id;S.view='f';render();ambient(SC[id].amb||'hotel');$('#scene').classList.remove('fade');await sl(250);busy=Math.max(0,busy-1);
+ const sc=SC[id];if(!S.f['v_'+id]){S.f['v_'+id]=1;if(sc.first)await sc.first();else msg(sc.desc||'')}else msg(sc.desc||'');if(sc.enter&&S.on)await sc.enter();save()}
+$('#turnb').onclick=async e=>{e.stopPropagation();if(busy)return;const sc=SC[S.sc];if(!sc.back)return;busy++;$('#scene').classList.add('turn');await sl(250);S.view=S.view==='b'?'f':'b';render();await sl(260);$('#scene').classList.remove('turn');busy=Math.max(0,busy-1);msg(cur().desc||'')};
+(()=>{const sc=$('#scene');const mv=e=>{const r=sc.getBoundingClientRect();sc.style.setProperty('--x',(e.clientX-r.left)+'px');sc.style.setProperty('--y',(e.clientY-r.top)+'px')};sc.addEventListener('pointermove',mv);sc.addEventListener('pointerdown',mv);
+ const rs=()=>sc.style.setProperty('--r',Math.max(80,sc.clientWidth*.16)+'px');addEventListener('resize',rs);setTimeout(rs,50);new ResizeObserver(rs).observe(sc)})();
+
+/* ================= 繪圖工具 ================= */
+let seed=1;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+function dk(h,k){const n=parseInt(h.slice(1),16),f=v=>Math.min(255,Math.round(v*k));return'#'+[n>>16,(n>>8)&255,n&255].map(v=>f(v).toString(16).padStart(2,'0')).join('')}
+const T=(x,y,t,sz=14,fill='#333',ex='')=>`<text x="${x}" y="${y}" font-size="${sz}" fill="${fill}" font-family="Noto Sans TC,sans-serif" font-weight="700" text-anchor="middle" ${ex}>${t}</text>`;
+const SDEFS=`<defs><linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4ff"/><stop offset="1" stop-color="#e8f6ff"/></linearGradient><linearGradient id="seatg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f6fb8"/><stop offset="1" stop-color="#284a80"/></linearGradient><linearGradient id="woodg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b8834e"/><stop offset="1" stop-color="#7a5230"/></linearGradient></defs>`;
+function roomBox(o={},sd=3){seed=sd;const w=o.wall||'#f0dfc0',l=o.low||'#c8a77a',f=o.floor||'#8a6646',c=o.ceil||'#e8d8bc',sw=dk(w,.85),sl=dk(l,.85);
+ let s=`<rect width="800" height="500" fill="#000"/><polygon points="0,-8 800,-8 660,70 140,70" fill="${c}"/>
+ <polygon points="140,70 660,70 660,370 140,370" fill="${w}"/><polygon points="140,270 660,270 660,370 140,370" fill="${l}"/>
+ <polygon points="0,-8 140,70 140,370 0,453" fill="${sw}"/><polygon points="0,290 140,270 140,370 0,453" fill="${sl}"/>
+ <polygon points="800,-8 660,70 660,370 800,453" fill="${sw}"/><polygon points="800,290 660,270 660,370 800,453" fill="${sl}"/>
+ <polygon points="0,453 140,370 660,370 800,453 800,500 0,500" fill="${f}"/>`;
+ for(let x=140;x<=660;x+=52)s+=`<line x1="${x}" y1="370" x2="${400+(x-400)*1.84}" y2="500" stroke="#000" stroke-opacity=".15"/>`;
+ if(o.pattern)for(let i=0;i<24;i++)s+=`<circle cx="${150+(i%8)*65}" cy="${100+(i/8|0)*55}" r="4" fill="${dk(w,.9)}"/>`;
+ return s+`<path d="M140 270H660M0 290L140 270M800 290L660 270" stroke="#0002" stroke-width="3"/><ellipse cx="400" cy="34" rx="60" ry="10" fill="#fff8d8"/><ellipse cx="400" cy="34" rx="140" ry="30" fill="#fff8d8" opacity=".25" filter="url(#bl8)"/>`}
+function sideDoor(side,x1,x2,hr=.8){const top=x=>side==='L'?70-(140-x)*78/140:70-(x-660)*78/140,bot=x=>side==='L'?370+(140-x)*83/140:370+(x-660)*83/140,dt=x=>bot(x)-hr*(bot(x)-top(x));
+ const p=[[x1,bot(x1)],[x1,dt(x1)],[x2,dt(x2)],[x2,bot(x2)]];const ys=p.map(q=>q[1]);return{pts:p.map(q=>q.join(',')).join(' '),r:[x1,Math.min(...ys),x2-x1,Math.max(...ys)-Math.min(...ys)]}}
+const ARROW=(x,y,dir='→',c='#3fb6a8')=>`<circle cx="${x}" cy="${y}" r="18" fill="${c}" opacity=".9"/>`+T(x,y+6,dir,18,'#062420');
+
+/* ===== 機艙：座位區 ===== */
+function cabinBase(){let s=`<rect width="800" height="500" fill="#e9e4da"/><path d="M0 0H800V90Q400 40 0 90Z" fill="#d6d0c4"/>`;
+ s+=`<path d="M0 90Q400 40 800 90V130Q400 82 0 130Z" fill="#c7c0b2"/>`;for(let x=40;x<800;x+=150)s+=`<rect x="${x}" y="96" width="110" height="26" rx="6" fill="#bdb6a8"/><circle cx="${x+95}" cy="110" r="4" fill="#ffd23f"/>`;
+ s+=`<polygon points="0,500 0,420 800,420 800,500" fill="#6b7a8c"/><path d="M0 420H800" stroke="#4a5868" stroke-width="4"/>`;return s}
+function seat(x,y,w=150,h=210,occ=''){return`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="26" fill="url(#seatg)"/><rect x="${x+16}" y="${y+12}" width="${w-32}" height="34" rx="12" fill="#f3f0e8"/><rect x="${x-6}" y="${y+h-50}" width="${w+12}" height="56" rx="18" fill="#2a4a80"/>${occ}`}
+/* ===== 旅館 ===== */
+function hotelCorridor(ch3){seed=5;const w=ch3?'#8a6ab8':'#e8cfa0',l=ch3?'#5a3a88':'#a0603a';let s=`<rect width="800" height="500" fill="#000"/><polygon points="0,-20 340,190 460,190 800,-20" fill="${dk(w,.8)}"/>
+ <polygon points="0,-20 340,190 340,290 0,520" fill="${dk(w,.92)}"/><polygon points="800,-20 460,190 460,290 800,520" fill="${dk(w,.92)}"/>
+ <polygon points="0,${520-.35*540} 340,${290-.35*100} 340,290 0,520" fill="${l}"/><polygon points="800,${520-.35*540} 460,${290-.35*100} 460,290 800,520" fill="${l}"/>
+ <polygon points="0,520 340,290 460,290 800,520" fill="${ch3?'#3a2a58':'#9a3a2a'}"/><path d="M400 290L400 520M370 290L250 520M430 290L550 520" stroke="${ch3?'#5a4a88':'#c4a040'}" stroke-width="6" opacity=".7"/>
+ <rect x="340" y="190" width="120" height="100" fill="${dk(w,.75)}"/>`;
+ for(let i=0;i<3;i++){const x=60+i*100,y=-20+x*210/340+14;s+=`<ellipse cx="${400-(400-x)*.6}" cy="${y}" rx="${30-i*6}" ry="${8-i*2}" fill="#fff4c8"/>`}return s}
+function hDoor(x1,x2,side,label,o={}){const top=x=>-20+x*210/340,bot=x=>520-x*230/340,f=x=>side==='L'?x:800-x,dt=x=>bot(x)-.72*(bot(x)-top(x));
+ const p=[[f(x1),bot(x1)],[f(x1),dt(x1)],[f(x2),dt(x2)],[f(x2),bot(x2)]];const xs=p.map(q=>q[0]),ys=p.map(q=>q[1]);const r=[Math.min(...xs),Math.min(...ys),Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys)];
+ const fill=o.fill||'#7a4a2a';let s=`<polygon points="${p.map(q=>q.join(',')).join(' ')}" fill="${o.open?'#1a1210':fill}" stroke="#3a2010" stroke-width="3"/>`;
+ if(label){const cx=r[0]+r[2]/2,fs=Math.max(10,Math.min(16,r[2]/4));s+=`<rect x="${cx-fs*1.6}" y="${r[1]+r[3]*.12}" width="${fs*3.2}" height="${fs*1.4}" rx="3" fill="#ffd23f" stroke="#7a5200"/>`+T(cx,r[1]+r[3]*.12+fs*1.05,label,fs,'#3a2200')}
+ return{s,r}}
+</script>
+
+<script>
+/* ================= 第一章：史瓦帝尼的第一個秘密（飛機上） ================= */
+/* 找藉口：只要跟飲料、甜點有關，耕卉就不會懷疑 */
+async function excuse(q,opts,ok,good){await say([['gh',q]]);const r=await choose('（品毫腦中快速運轉……要怎麼解釋？）',opts);
+ if(r===ok){await say([['ph',`「${opts[r]}」`],...good]);return true}
+ await say([['ph',`「${opts[r]}」`],['gh','「你最好是。」','gh-roll']]);await go('aisle');oops('耕卉翻了一個白眼。你只好先退回走道，假裝在看機艙。');return false}
+const FACTS=`<b>✈ 史瓦帝尼小百科</b><br>
+・正式國名：史瓦帝尼王國（Kingdom of Eswatini），舊名 Swaziland<br>
+・獨立：1968 年 9 月 6 日<br>
+・國王：恩史瓦帝三世（Mswati III），和國家<b>同一年</b>出生，生日 4 月 19 日<br>
+・國王的稱號 Ngwenyama，意思是「獅子」；太后的稱號 Ndlovukati，意思是「母象」<br>
+・首都：行政首都墨巴本（Mbabane）、王室與立法首都洛班巴（Lobamba）；最大城市曼齊尼（Manzini）<br>
+・貨幣：里蘭吉尼（Lilangeni，複數 Emalangeni，符號 E），和南非蘭特 1：1<br>
+・語言：西斯瓦蒂語（siSwati）、英語。你好＝Sawubona（回答：Yebo, sawubona）；謝謝＝Ngiyabonga<br>
+・國旗：由上而下 <b>藍、黃、紅（最寬）、黃、藍</b>，中間是黑白的恩古尼盾牌、兩支長矛和一根權杖<br>
+・四個行政區：Hhohho（西北）、Manzini（中部）、Lubombo（東部）、Shiselweni（南部）<br>
+・開車靠左；國際電話區碼 +268；比台灣慢 6 小時；是台灣在非洲的邦交國`;
+function magPanel(){note('mag','機上雜誌：史瓦帝尼小百科',FACTS.replace(/<[^>]+>/g,''));
+ return panel('機上雜誌',`<div class="paper" style="font-size:15px;line-height:1.75">${FACTS}</div><div class="paper trap" style="max-width:300px;transform:rotate(3deg)">🌟 郝翔小貼紙：<br>Swaziland 改名那年是 <b>1986</b> 年<br>（郝翔親自考證，考證費 E10）</div>`)}
+
+SC.door={name:'廁所門前',amb:'plane',dark:.4,desc:'廁所門前。紅色的電子鎖一閃一閃。',
+ art:()=>{let s=cabinBase()+`<rect x="270" y="120" width="260" height="300" rx="14" fill="#e6e0d4" stroke="${OL}" stroke-width="5"/><path d="M400 124V416" stroke="#9a9488" stroke-width="3"/>`;
+  s+=`<rect x="355" y="150" width="90" height="40" rx="10" fill="#3a6fb8" stroke="${OL}" stroke-width="3"/>`+T(400,178,'WC',24,'#fff')+`<rect x="292" y="212" width="96" height="62" rx="4" fill="#fff8e6" transform="rotate(-3 340 245)"/>`+T(340,238,'貪險活寶公告',11,'#c4202a','transform="rotate(-3 340 245)"')+T(340,258,'解不開 E500',11,'#333','transform="rotate(-3 340 245)"');
+  s+=`<rect x="548" y="220" width="64" height="96" rx="10" fill="#1a1a1a" stroke="${OL}" stroke-width="3"/><rect x="556" y="230" width="48" height="20" rx="3" fill="${S.f.toilet?'#2c8':'#e22'}"/>`+Array.from({length:9},(_,i)=>`<rect x="${558+(i%3)*15}" y="${258+(i/3|0)*16}" width="12" height="12" rx="3" fill="#666"/>`).join('');
+  s+=`<rect x="290" y="34" width="220" height="62" rx="10" fill="#111" stroke="${OL}" stroke-width="3"/>`+T(400,58,'WELCOME TO',13,'#7fdcff')+T(400,82,'THE SECRET。',16,'#7fdcff')+`<path d="M318 48h40" stroke="#ff5a5a" stroke-width="3"/>`;
+  return s+(S.f.toilet?`<rect x="272" y="122" width="256" height="296" fill="#fff8d8" opacity=".5"/>`:'')},
+ spots:()=>[
+  {r:[540,212,80,112],l:'紅色電子鎖',a:async()=>{if(S.f.toilet)return msg('綠燈亮著。');if(await keypad('廁所電子鎖','<p class="pd">「請輸入四位數密碼。」</p>',4,'2018','嗶嗶——密碼錯誤。廣播裡傳來郝翔的聲音：「要不要直接付五百？」')){S.f.toilet=1;render();await ch1End()}}},
+  {r:[286,30,228,70],l:'螢幕',a:()=>{note('riddle','廁所門上方的螢幕','「WELCOME TO SWAZILAND」被刪掉，變成「WELCOME TO THE SECRET。」下面一行小字：「密碼：這個名字被刪掉的那一年。」');return panel('螢幕',`<div class="paper" style="background:#10202a;color:#bfeaff;font-family:'Noto Sans TC';text-align:center">WELCOME TO <s style="color:#ff6a6a">SWAZILAND</s><br>↓<br>WELCOME TO THE SECRET。<br><br><small>密碼：「SWAZILAND」這個名字被刪掉的那一年。</small></div>`)}},
+  {r:[286,206,108,76],l:'貪險活寶公告',a:()=>doc('sign','廁所門上的公告','<b>貪險活寶旅行社　公告</b><br>解鎖廁所需要四位數密碼。<br>解不開者，使用一次收費 E500。<br><span style="font-size:14px;color:#a06a40">——郝翔　敬上（公告閱讀費另計）</span>')},
+  {r:[0,300,150,120],l:'← 走道',to:'aisle'}]};
+
+SC.aisle={name:'機艙走道',amb:'plane',dark:.35,desc:'機艙走道。郝翔的代購餐車停在一旁。',
+ art:()=>{let s=cabinBase();for(let i=0;i<4;i++){const x=60+i*190;s+=`<rect x="${x}" y="190" width="120" height="230" rx="26" fill="url(#seatg)" stroke="${OL}" stroke-width="4" opacity="${.55+i*.12}"/><rect x="${x+12}" y="200" width="96" height="30" rx="12" fill="#f3f0e8"/>`}
+  s+=`<rect x="330" y="230" width="150" height="190" rx="12" fill="#d6d9df" stroke="${OL}" stroke-width="5"/><path d="M330 290h150M330 350h150" stroke="#8a8e96" stroke-width="3"/>`+T(405,270,'郝翔代購',16,'#c4202a');
+  [[350,210,'#ff9fb8'],[385,206,'#ffd23f'],[420,210,'#8fd07a']].forEach(([x,y,c])=>s+=`<rect x="${x}" y="${y}" width="22" height="24" rx="4" fill="${c}" stroke="${OL}" stroke-width="2"/>`);
+  return s+ARROW(60,460,'←')+ARROW(740,460,'→')},
+ spots:()=>[
+  {r:[330,200,150,220],l:'郝翔的餐車',a:()=>doc('cart','餐車上的價目表','<b>郝翔代購價目表（單位：E 里蘭吉尼）</b><br>飲料 E35 ／ 甜點 E40<br>幫你拿飲料 E5 ／ 幫你插吸管 E2<br>告訴你廁所在哪 E500<br><span style="font-size:14px">（史瓦帝尼的錢叫「里蘭吉尼」，郝翔只收這個。）</span>')},
+  {r:[0,420,130,80],l:'← 17 排座位',to:'seat'},{r:[670,420,130,80],l:'廁所 →',to:'door'}]};
+
+SC.seat={name:'第 17 排',amb:'plane',dark:.3,desc:'第 17 排。耕卉抱著史迪奇坐在 B 座。',
+ art:()=>{let s=cabinBase()+`<rect x="40" y="140" width="110" height="150" rx="44" fill="url(#skyg)" stroke="${OL}" stroke-width="6"/><ellipse cx="80" cy="230" rx="40" ry="16" fill="#fff" opacity=".9"/>`;
+  s+=seat(170,200,160,220)+seat(350,200,160,220)+seat(530,200,160,220);
+  s+=`<use href="#P-gh-norm" x="350" y="120" width="160" height="213"/><rect x="350" y="330" width="160" height="90" rx="20" fill="#2a4a80" stroke="${OL}" stroke-width="4"/>`;
+  s+=`<g transform="translate(410 300)"><ellipse cx="0" cy="18" rx="22" ry="20" fill="#4a7ad8" stroke="${OL}" stroke-width="3"/><ellipse cx="0" cy="0" rx="24" ry="17" fill="#5a8ae8" stroke="${OL}" stroke-width="3"/><path d="M-20-6l-18-14 20 6M20-6l18-14-20 6" fill="#5a8ae8" stroke="${OL}" stroke-width="3"/><circle cx="-8" cy="0" r="5" fill="#111"/><circle cx="8" cy="0" r="5" fill="#111"/></g>`;
+  s+=`<rect x="200" y="226" width="100" height="62" rx="8" fill="#111" stroke="${OL}" stroke-width="3"/>`+T(250,262,S.f.doc?'▶ 紀錄片':'機上娛樂',12,'#7fdcff');
+  for(const x of [195,375,555])s+=`<rect x="${x}" y="356" width="110" height="34" rx="8" fill="#1e3a66"/>`;
+  return s+T(250,190,'A',20,'#3a5a90')+T(430,190,'B',20,'#3a5a90')+T(610,190,'C',20,'#3a5a90')+ARROW(740,470,'→')},
+ spots:()=>[
+  {r:[360,130,140,190],l:'耕卉',a:()=>say([['gh',['「快點去快點回來。」','「你剛剛到底去看什麼機艙？」','「史迪奇說你很奇怪。」','「我好想喝飲料喔。」'][Math.random()*4|0]]])},
+  {r:[360,350,140,50],l:'耕卉的椅背口袋',a:async()=>{if(has('mag'))return magPanel();if(!await excuse('「你翻我的口袋幹嘛？」',['「我在找……廁所的地圖。」','「我想看看雜誌上有沒有史瓦帝尼的甜點。」','「我在找紙巾。」'],1,[['gh','「有的話記得跟我說！」','gh-happy']]))return;get('mag');await magPanel()}},
+  {r:[196,222,108,70],l:'機上娛樂螢幕',a:async()=>{if(!S.f.phones){if(!await excuse('「你要用我的耳機幹嘛？」',['「我要聽廁所的位置廣播。」','「我想聽機長講話。」','「我想看看有沒有史瓦帝尼的飲料廣告，幫妳研究。」'],2,[['gh','「好啊！看到好喝的要告訴我。」','gh-happy']]))return;S.f.phones=1}
+   const r=await choose('（選一個頻道）',['① 電影《魔鬼終結者》','② 紀錄片〈史瓦帝尼：從 Swaziland 到 eSwatini〉','③ 卡通〈星際寶貝〉']);
+   if(r===0)return msg('畫面上一個肌肉很大的男人說：「I\'ll be back.」……現在不是看電影的時候。');
+   if(r===2)return msg('耕卉湊過來：「是史迪奇！」……品毫默默轉台。');
+   S.f.doc=1;render();note('doc','紀錄片〈從 Swaziland 到 eSwatini〉','國王恩史瓦帝三世在自己 50 歲生日那天，宣布把國名從 Swaziland 改成 eSwatini——「史瓦帝尼人的土地」。');
+   await say(['紀錄片的旁白慢慢地說：','「這個王國，在國王恩史瓦帝三世 50 歲生日的那一天，正式宣布改名。」','「從此，Swaziland 這個名字被刪掉了。新的名字是 eSwatini——意思是『史瓦帝尼人的土地』。」','……品毫看了一眼廁所的方向。'])}},
+  {r:[690,430,110,70],l:'走道 →',to:'aisle'}]};
+async function ch1End(){await say(['「嗶——」','綠燈亮了。廁所門「喀」地滑開。','品毫衝了進去。','……','三分鐘後。','品毫神清氣爽地走了出來。耕卉剛好站在門口。',['gh','「你在裡面幹嘛？」'],['ph','「……參觀。」'],['gh','「參觀廁所？」'],['ph','「它的設計很有特色。」'],['gh','「你很奇怪。」','gh-roll'],'機艙的燈亮了回來。郝翔的廣播又響了：',['hx','「恭喜旅客品毫，成功解鎖，免費使用廁所一次。」'],['hx','「另外，剛才的互動活動，參加費 E200。」','hx-money'],['ph','「……」']]);
+ S.act='第二章';S.f.ch2=1;await card('第二章','蜜月、生存與不能說的秘密');await go('airport')}
+</script>
+
+<script>
+/* ================= 第二章：蜜月、生存與不能說的秘密 ================= */
+const FEES=[['機場接送','E150','✔'],['幫拿行李','E50','✔'],['幫拍照','E20 × 3','✔'],['問路服務','E10','✘ 品毫自己問到了'],['觀光巴士','E200','✔'],['導遊服務','E300','✔'],['景點門票','E60 × 2','✔'],['飲料代購','E35 × 3','✔'],['甜點代購','E40 × 2','✔'],['看廁所服務','E500','✘ 品毫拒絕了']];
+const feeTable=()=>`<b>貪險活寶旅行社　今日收費單</b><table>${FEES.map(([a,b,c])=>`<tr><td>${a}</td><td>${b}</td><td style="color:${c[0]==='✔'?'#2a8a4a':'#c4202a'}">${c}</td></tr>`).join('')}</table><div style="margin-top:6px">✔ 要付　✘ 不用付　（單位：E＝里蘭吉尼）</div>`;
+function flagSVG(o={}){const st=o.stripes||['#3e5eb9','#ffd900','#b10c0c','#ffd900','#3e5eb9'],h=o.h||[3,1,8,1,3],tot=h.reduce((a,b)=>a+b,0);let y=0,s='';
+ st.forEach((c,i)=>{const hh=h[i]/tot*80;s+=`<rect x="0" y="${y}" width="120" height="${hh}" fill="${c}"/>`;y+=hh});
+ const sh=o.vertical?`<g transform="translate(60 40) rotate(90)">`:`<g transform="translate(60 40)">`;
+ s+=sh+`<path d="M-34 0h68" stroke="#d9c49a" stroke-width="2"/><ellipse rx="22" ry="12" fill="#fff" stroke="#000" stroke-width="1.5"/><path d="M0-12a22 12 0 0 1 0 24Z" fill="#000"/><path d="M-30-3h60M-30 3h60" stroke="#000" stroke-width="1.2"/></g>`;
+ return`<svg viewBox="0 0 120 80" width="120" height="80" style="border:2px solid #3a2a22;border-radius:4px">${s}</svg>`}
+
+/* ===== 機場 ===== */
+SC.airport={name:'史瓦帝尼機場',amb:'hotel',desc:'恩史瓦帝三世國際機場（King Mswati III International Airport）。',
+ art:()=>{let s=`<rect width="800" height="500" fill="#bfe6ff"/><rect y="300" width="800" height="200" fill="#e8dcc6"/><path d="M0 300H800" stroke="${OL}" stroke-width="4"/>`;
+  for(let x=20;x<800;x+=130)s+=`<rect x="${x}" y="40" width="100" height="160" rx="10" fill="#e9f6ff" stroke="#9ac" stroke-width="4"/>`;
+  s+=`<rect x="260" y="20" width="280" height="40" rx="10" fill="#3e5eb9" stroke="${OL}" stroke-width="4"/>`+T(400,47,'Welcome to the Kingdom of Eswatini',15,'#ffd900');
+  s+=`<rect x="120" y="220" width="200" height="120" rx="14" fill="#c98a4a" stroke="${OL}" stroke-width="5"/>`+T(220,250,'入境審查 IMMIGRATION',13,'#fff')+`<circle cx="220" cy="200" r="36" fill="#7a4a2a" stroke="${OL}" stroke-width="4"/><circle cx="208" cy="198" r="5" fill="#111"/><circle cx="232" cy="198" r="5" fill="#111"/><path d="M210 214q10 8 20 0" stroke="#111" stroke-width="3" fill="none"/><rect x="188" y="164" width="64" height="16" rx="6" fill="#2a3a6a"/>`;
+  if(S.f.immig)s+=`<use href="#P-hx-norm" x="520" y="140" width="170" height="227"/><rect x="560" y="300" width="120" height="50" rx="6" fill="#fff8e6" stroke="${OL}" stroke-width="3"/>`+T(620,332,'品毫／耕卉',16,'#c4202a');
+  return s+`<rect x="0" y="420" width="800" height="80" fill="#cbbd9e"/>`},
+ spots:()=>[{r:[120,160,200,180],l:'入境審查',a:immigration},
+  ...(S.f.immig?[{r:[520,140,170,230],l:'郝翔',a:payFees}]:[])],
+ first:async()=>{await say(script(S2.arrive1));msg('（先通過入境審查吧。入境卡要寫對。）')}};
+async function immigration(){if(S.f.immig)return msg('海關大叔對你比了個讚：「Sawubona！」');
+ const Q=[['國家的正式名稱',['Kingdom of Swaziland','Kingdom of Eswatini','Republic of Eswatini'],1],['入境後的第一站（行政首都）',['Lobamba','Mbabane','Manzini'],1],['身上帶的當地貨幣',['Rand（蘭特）','Lilangeni（里蘭吉尼）','Swazi Dollar'],1]];
+ const ok=await panel('入境卡',`<p class="pd">海關大叔把入境卡推過來。旁邊放著一張郝翔的名片：「代填入境卡 E50」。</p>${Q.map(([q,o],i)=>`<div style="text-align:left;margin:8px 0"><b>${i+1}. ${q}</b><div class="row" style="justify-content:flex-start">${o.map((x,j)=>`<button data-q="${i}" data-j="${j}">${x}</button>`).join('')}</div></div>`).join('')}<button class="btn-y" id="sub">交給海關</button>`,(el,done)=>{const v=[-1,-1,-1];
+  el.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{v[+b.dataset.q]=+b.dataset.j;el.querySelectorAll(`[data-q="${b.dataset.q}"]`).forEach(x=>x.style.borderColor=x===b?'#ffd23f':'');click()});
+  el.querySelector('#sub').onclick=()=>{if(v.every((x,i)=>x===Q[i][2])){ding();done(true)}else oops('海關大叔推了推眼鏡：「Sorry？」入境卡被退了回來。')}});
+ if(!ok)return;S.f.immig=1;render();await say([['ph','「Sawubona！」'],'海關大叔笑著蓋了章。']);await say(script(S2.arrive2));get('feelist');msg('（郝翔在等你付錢。點郝翔。）')}
+async function payFees(){if(S.f.paid)return say([['hx','「旅程即將開始，車上飲料另計。」']]);
+ if(!S.f.total){if(!await keypad('郝翔的收費單',`<div class="paper" style="font-size:15px">${feeTable()}</div><p class="pd">郝翔：「總共多少？自己算，算錯不退。」</p>`,4,'1065','郝翔搖搖手指：「不對喔。算錯手續費 E20。」'))return;S.f.total=1}
+ const N=[[200,4],[100,3],[50,1],[20,2],[10,2],[5,1]];
+ const ok=await panel('付錢（E1065）',`<p class="pd">品毫的錢包裡只剩這些里蘭吉尼。郝翔說：「我不找零。」<br>剛好湊出 <b>E1065</b>。</p><div class="row">${N.map(([v,c],i)=>`<button data-i="${i}" style="min-width:90px">E${v}<br><small id="c${i}">剩 ${c} 張</small></button>`).join('')}</div><p class="pd" id="sm">已拿出：E0</p><div class="row"><button id="rs">收回來</button><button class="btn-y" id="py">付錢</button></div>`,(el,done)=>{const left=N.map(x=>x[1]);let sum=0;
+  const draw=()=>{el.querySelector('#sm').textContent='已拿出：E'+sum;N.forEach((x,i)=>el.querySelector('#c'+i).textContent='剩 '+left[i]+' 張')};
+  el.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(!left[i])return;left[i]--;sum+=N[i][0];coin();draw()});
+  el.querySelector('#rs').onclick=()=>{N.forEach((x,i)=>left[i]=x[1]);sum=0;draw()};
+  el.querySelector('#py').onclick=()=>{if(sum===1065){ding();done(true)}else oops(sum>1065?'郝翔：「我不找零喔。」……多給的他直接收下了。（你趕快收回來）':'郝翔：「還差一點喔。」')}});
+ if(!ok)return;S.f.paid=1;await say([['hx','「謝謝惠顧。」','hx-money'],'郝翔要你的錢。']);await say(script(S2.tour));S.f.stop=0;await go('tour')}
+
+/* ===== 一日觀光：七個真實景點 ===== */
+const STOPS=[
+ {n:'墨巴本（Mbabane）',sky:'#9fd8ff',gr:'#a8d07a',land:'gov',
+  intro:[['hx','「這裡是史瓦帝尼的行政首都——墨巴本。」'],['hx','「政府大樓前面那排旗桿，其中一根掛的是真的國旗。」'],['hx','「其他的……是我掛的。拍照一張 E20。」']],
+  urge:['走了五分鐘。','想上廁所。'],end:[['gh','「品毫，要走了。」'],['ph','「好。」']]},
+ {n:'洛班巴（Lobamba）・國家博物館',sky:'#ffe2a8',gr:'#d8c08a',land:'museum',
+  intro:[['hx','「洛班巴是王室與立法首都。國家博物館就在國會旁邊。」'],['hx','「史瓦帝尼一年有好幾個大節日，博物館裡都有介紹。」']],
+  urge:['搭車十分鐘。','想上廁所。'],end:[['gh','「品毫，等等還有下一個景點。」'],['ph','「好。」']]},
+ {n:'曼特加（Mantenga）瀑布與文化村',sky:'#b8e8ff',gr:'#7cc06a',land:'falls',
+  intro:[['hx','「曼特加瀑布在 Ezulwini 山谷，旁邊的文化村有傳統的 Sibhaca 舞。」'],['hx','「跳得好的人，可以免費喝一杯飲料。跳不好的，E35。」']],
+  urge:['看到水。','想上廁所。'],end:[['gh','「品毫，你剛剛一直盯著瀑布看幹嘛？」','gh-roll'],['ph','「……水很漂亮。」']]},
+ {n:'米利瓦尼（Mlilwane）野生動物保護區',sky:'#ffd8a0',gr:'#d8b860',land:'safari',
+  intro:[['hx','「米利瓦尼是史瓦帝尼最早的保護區。可以騎腳踏車看斑馬喔。」'],['hx','「水壩那邊禁止釣魚——因為有鱷魚。」'],['ph','「……可惜。」']],
+  urge:['看到洗手間的標誌。','整個人甚至會下意識靠近。','可是每一次他準備開口，耕卉就剛好出現。'],end:[['gh','「你站在廁所旁邊幹嘛？」'],['ph','「我……」'],['ph','「沒事。」']]},
+ {n:'恩格威尼亞（Ngwenya）玻璃工廠',sky:'#c8f0e8',gr:'#9ac8a8',land:'glass',
+  intro:[['hx','「恩格威尼亞玻璃工廠，用回收的玻璃瓶做成各種動物。」'],['hx','「Ngwenya 在西斯瓦蒂語裡，是『鱷魚』的意思。」'],['hx','「跟國王的稱號 Ngwenyama 只差兩個字母，不要搞錯喔。搞錯一次 E10。」']],
+  urge:['品毫看著玻璃工廠裡的洗手台。','肚子又叫了一聲。'],end:[['gh','「好可愛！我們走吧。」','gh-happy']]},
+ {n:'馬爾克斯（Malkerns）・史瓦濟蠟燭',sky:'#ffd0e0',gr:'#b8d890',land:'candle',
+  intro:[['hx','「這裡是有名的史瓦濟蠟燭（Swazi Candles），全部手工做的。」'],['hx','「蠟燭店送火柴。火柴免費——蠟燭不免費。」']],
+  urge:['品毫盯著店後面的「WC」門牌。','一步、兩步——'],end:[['gh','「品毫！來幫我挑啦！」']]},
+ {n:'曼齊尼（Manzini）市集',sky:'#ffe8a0',gr:'#e0b070',land:'market',
+  intro:[['hx','「曼齊尼是史瓦帝尼最大的城市，這個市集什麼都有。」'],['hx','「跟老闆用西斯瓦蒂語打招呼，比較好殺價。翻譯服務 E30。」']],
+  urge:['市集的盡頭，有一間公共廁所。','品毫的眼睛亮了。'],end:['於是品毫只能默默離開。']}];
+function stopArt(i){const st=STOPS[i];let s=`<rect width="800" height="500" fill="${st.sky}"/><circle cx="680" cy="80" r="40" fill="#fff4b0" stroke="${OL}" stroke-width="3"/><path d="M0 300q200-40 400 0t400 0V500H0Z" fill="${st.gr}" stroke="${OL}" stroke-width="4"/>`;
+ const L={gov:`<rect x="250" y="130" width="300" height="170" rx="8" fill="#f2e8d8" stroke="${OL}" stroke-width="5"/>${[0,1,2,3,4].map(k=>`<rect x="${275+k*55}" y="170" width="30" height="90" fill="#cfc4b0" stroke="${OL}" stroke-width="2"/>`).join('')}${[0,1,2,3].map(k=>`<path d="M${150+k*170} 300V150" stroke="#666" stroke-width="5"/><rect x="${150+k*170}" y="150" width="46" height="30" fill="${['#3e5eb9','#b10c0c','#ffd900','#3e5eb9'][k]}" stroke="${OL}" stroke-width="2"/>`).join('')}`,
+  museum:`<path d="M240 160l160-70 160 70Z" fill="#c98a4a" stroke="${OL}" stroke-width="5"/><rect x="250" y="160" width="300" height="140" fill="#f2e8d8" stroke="${OL}" stroke-width="5"/>${T(400,200,'NATIONAL MUSEUM',16,'#7a4a2a')}<rect x="370" y="230" width="60" height="70" fill="#7a4a2a"/>`,
+  falls:`<path d="M300 300V120q100-30 200 0V300Z" fill="#8a7a6a" stroke="${OL}" stroke-width="5"/><path d="M370 120q30 90 0 180h60q-30-90 0-180Z" fill="#cfefff" stroke="${OL}" stroke-width="3"/><ellipse cx="400" cy="310" rx="120" ry="20" fill="#7fc6ff" stroke="${OL}" stroke-width="3"/><path d="M120 300l30-60 30 60Z M600 300l30-60 30 60Z" fill="#c9a060" stroke="${OL}" stroke-width="3"/>`,
+  safari:`<path d="M160 300V210M110 210q50-40 100 0Z" stroke="#6a4a2a" stroke-width="10" fill="#5a8a3a"/><path d="M620 300V220M570 220q50-40 100 0Z" stroke="#6a4a2a" stroke-width="10" fill="#5a8a3a"/><ellipse cx="420" cy="340" rx="110" ry="24" fill="#7fc6ff" stroke="${OL}" stroke-width="3"/>${T(300,240,'🦓',40)}${T(500,250,'🦓',40)}${T(380,280,'🐗',34)}`,
+  glass:`<rect x="260" y="140" width="280" height="160" rx="12" fill="#e8f8f4" stroke="${OL}" stroke-width="5"/><path d="M380 140v-50h40v50" fill="#aaa" stroke="${OL}" stroke-width="4"/>${T(400,190,'NGWENYA GLASS',16,'#2a7a6a')}${T(330,260,'🐊',36)}${T(470,260,'🦏',36)}`,
+  candle:`<rect x="250" y="140" width="300" height="160" rx="12" fill="#fff0f6" stroke="${OL}" stroke-width="5"/>${T(400,180,'SWAZI CANDLES',16,'#c4407a')}${[0,1,2,3,4].map(k=>`<rect x="${290+k*48}" y="210" width="26" height="60" rx="4" fill="${['#3e5eb9','#ff9f2e','#b10c0c','#8fd07a','#ff7aa8'][k]}" stroke="${OL}" stroke-width="2"/>`).join('')}`,
+  market:`${[0,1,2].map(k=>`<path d="M${120+k*200} 300V190h160V300" fill="#fff8e6" stroke="${OL}" stroke-width="4"/><path d="M${110+k*200} 190l90-40 90 40Z" fill="${['#e2402a','#3fb6a8','#ffd23f'][k]}" stroke="${OL}" stroke-width="4"/>`).join('')}${T(200,260,'🍌🥭',26)}${T(400,260,'🍰🧁',26)}${T(600,260,'🧺🪵',26)}`}[st.land];
+ return s+L+`<rect x="660" y="230" width="70" height="44" rx="8" fill="#3a6fb8" stroke="${OL}" stroke-width="3"/>`+T(695,259,'WC',18,'#fff')+`<use href="#P-gh-norm" x="20" y="250" width="150" height="200"/><use href="#P-hx-norm" x="560" y="290" width="120" height="160"/>`}
+SC.tour={name:'觀光巴士',amb:'hotel',desc:'',
+ art:()=>stopArt(S.f.stop||0),
+ spots:()=>{const i=S.f.stop||0;return[
+  {r:[240,90,320,220],l:'景點：'+STOPS[i].n.split('（')[0],a:()=>stopPuzzle(i)},
+  {r:[650,220,90,64],l:'WC',a:()=>S.f['s'+i]?say(STOPS[i].end.map(x=>x)):say([['gh',['「品毫，要走了。」','「品毫，等等還有下一個景點。」','「你站在廁所旁邊幹嘛？」'][i%3]],['ph','「……沒事。」']])},
+  {r:[560,290,120,160],l:'郝翔',a:()=>say(STOPS[i].intro)},
+  {r:[20,250,150,200],l:'耕卉',a:()=>say([['gh',['「這裡好漂亮！」','「品毫，幫我拍照！」','「我想喝飲料。」','「好熱喔，有沒有冰的？」'][Math.random()*4|0]]])},
+  {r:[690,420,110,80],l:'下一站 →',ex:1,a:nextStop}]},
+ enter:async()=>{const i=S.f.stop||0;if(S.f['in'+i])return;S.f['in'+i]=1;$('#loc').textContent=S.act+'｜'+STOPS[i].n;$('#sname').textContent=STOPS[i].n;await card(STOPS[i].n,'第 '+(i+1)+' 站／共 7 站');await say([...STOPS[i].intro,...STOPS[i].urge])}};
+async function nextStop(){const i=S.f.stop||0;if(!S.f['s'+i])return msg('郝翔：「這一站的活動還沒完成喔。（點景點）」');
+ await say(STOPS[i].end);if(i<STOPS.length-1){S.f.stop=i+1;render();await SC.tour.enter()}else{S.f.tourDone=1;await go('lobby')}}
+async function stopPuzzle(i){if(S.f['s'+i])return msg('這一站已經逛完了。');let ok=false;
+ if(i===0)ok=await pickOne('政府大樓前的旗桿',`<p class="pd">四根旗桿，四面旗子。真的國旗下面，就是公共廁所的指標。<br>耕卉要在真的國旗前面拍照。</p>`,[{h:flagSVG({h:[3,1,3,1,3]}),bad:'那面旗子的紅色太窄了。郝翔：「這面是我縫的。」'},{h:flagSVG(),ok:1},{h:flagSVG({stripes:['#ffd900','#3e5eb9','#b10c0c','#3e5eb9','#ffd900']}),bad:'顏色順序不對。路過的警衛搖了搖頭。'},{h:flagSVG({vertical:1}),bad:'盾牌是直的？國旗上的盾牌、長矛和權杖是橫著放的。'}],2);
+ if(i===1)ok=await museumPuzzle();
+ if(i===2)ok=await dancePuzzle();
+ if(i===3)ok=await safariPuzzle();
+ if(i===4)ok=await glassPuzzle();
+ if(i===5)ok=await candlePuzzle();
+ if(i===6)ok=await marketPuzzle();
+ if(!ok)return;S.f['s'+i]=1;ding();msg('（完成了！點「下一站」繼續。）')}
+async function museumPuzzle(){note('museum','國家博物館的展示','國王生日（改名紀念日）：4 月 19 日／蘆葦舞節 Umhlanga：每年 8 月下旬／獨立紀念日：9 月 6 日／王權節 Incwala：12 月到 1 月');
+ const g=await panel('國家博物館',`<div class="paper" style="font-size:15px"><b>史瓦帝尼的重要日子</b><br>🎂 國王生日（也是 2018 年改名的那天）：4 月 19 日<br>🌾 蘆葦舞節 Umhlanga：每年 8 月下旬<br>🇸🇿 獨立紀念日：9 月 6 日<br>👑 王權節 Incwala：每年 12 月到隔年 1 月</div><p class="pd">博物館廁所的門上掛著四張卡片，鎖頭寫著：「照一年中的先後順序翻開」。<br>按「我記住了」之後，展示牌會被郝翔擋住（觀看費 E20）。</p><button class="btn-y" id="go">我記住了</button>`,(el,done)=>{el.querySelector('#go').onclick=()=>done(true)});
+ if(!g)return false;return orderTap('廁所門上的四張卡片','<p class="pd">照一年中的先後順序點。</p>',['👑 王權節','🇸🇿 獨立紀念日','🎂 國王生日','🌾 蘆葦舞節'],[2,3,1,0],'卡片「啪」地全翻了回去。順序不對。')}
+function dancePuzzle(){const M=['🦶','👏','🦶','🛡','⬆','👏'],K=['🦶','👏','🛡','⬆'],NMv={'🦶':'踏腳','👏':'拍手','🛡':'舉盾','⬆':'跳'};let sp=700;
+ return panel('Sibhaca 傳統舞',`<p class="pd" id="dp">文化村的舞者跳了一段 Sibhaca 舞——<b>只跳一次</b>，記住動作！</p><div style="font-size:70px;height:90px" id="dv">🙂</div><div class="row">${K.map(k=>`<button data-k="${k}" disabled style="font-size:24px">${k}<br><small>${NMv[k]}</small></button>`).join('')}</div><p class="pd" id="ds"></p>`,(el,done)=>{let k=0,on=false;const dv=el.querySelector('#dv'),bs=[...el.querySelectorAll('[data-k]')];
+ const play=async()=>{on=false;bs.forEach(b=>b.disabled=true);await sl(900);for(const m of M){if(!el.isConnected)return;dv.textContent=m;tone(m==='🦶'?120:m==='👏'?1400:m==='🛡'?400:700,.15,'square',.12);await sl(sp);dv.textContent='🙂';await sl(sp*.4)}k=0;on=true;bs.forEach(b=>b.disabled=false);el.querySelector('#dp').textContent='換品毫跳！'};
+ bs.forEach(b=>b.onclick=async()=>{if(!on)return;const m=b.dataset.k;dv.textContent=m;click();if(m===M[k]){el.querySelector('#ds').textContent=M.slice(0,k+1).map(x=>NMv[x]).join('、');if(++k===M.length){on=false;ding();await sl(500);done(true)}}else{on=false;oops('品毫跳錯了，絆倒在地上。耕卉笑到飲料噴出來。');el.querySelector('#ds').textContent='';sp*=.9;el.querySelector('#dp').textContent='舞者又跳了一次……';play()}});play()},{closeText:'不跳了（下次重跳）'})}
+function safariPuzzle(){seed=88;const A=[...Array(4).fill('🦓'),...Array(2).fill('🐗'),...Array(5).fill('🦌'),'🐊','🦓'.repeat(0)];const pos=A.map(()=>[rnd()*90+5,rnd()*60+25]);
+ return keypad('保護區的廁所',`<p class="pd">保護區廁所的門上有個三位數的鎖：「<b>你看到的 斑馬・疣豬・黑斑羚 數量</b>（照這個順序）」。<br>水壩裡的不算。</p><div style="position:relative;height:200px;background:#e8d8a0;border-radius:10px;border:3px solid #3a2a22;overflow:hidden"><div style="position:absolute;left:30%;top:70%;width:40%;height:28%;background:#7fc6ff;border-radius:50%"></div>${A.map((a,i)=>`<span style="position:absolute;left:${a==='🐊'?48:pos[i][0]}%;top:${a==='🐊'?78:pos[i][1]*.7}%;font-size:28px">${a}</span>`).join('')}</div><p class="pd" style="font-size:13px">🦓 斑馬　🐗 疣豬　🦌 黑斑羚　🐊 鱷魚</p>`,3,'425','鎖沒開。一隻疣豬從你腳邊衝過去。')}
+function glassPuzzle(){const G=[['🦁','玻璃獅子'],['🐘','玻璃大象'],['🐊','玻璃鱷魚'],['🦏','玻璃犀牛'],['🦓','玻璃斑馬']];
+ return panel('玻璃工廠的禮品區',`<p class="pd">耕卉：「我要買一隻<b>跟這間工廠名字一樣</b>的，還要買一隻<b>跟國王稱號一樣</b>的送史迪奇！」<br>選兩隻。</p><div class="row">${G.map(([e,n],i)=>`<button data-i="${i}" style="font-size:34px;min-width:80px">${e}<br><small style="font-size:12px">${n}</small></button>`).join('')}</div><button class="btn-y" id="buy">結帳</button>`,(el,done)=>{const sel=new Set();
+ el.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;sel.has(i)?sel.delete(i):sel.add(i);b.style.borderColor=sel.has(i)?'#ffd23f':'';click()});
+ el.querySelector('#buy').onclick=()=>{if(sel.size===2&&sel.has(0)&&sel.has(2)){get('glass');done(true)}else oops('耕卉：「不是這個啦！」（Ngwenya 和 Ngwenyama 不一樣喔）')}})}
+function candlePuzzle(){const C=[['#3e5eb9','#ffd900','#b10c0c','#ffd900','#3e5eb9'],['#3e5eb9','#b10c0c','#ffd900','#b10c0c','#3e5eb9'],['#ffd900','#3e5eb9','#b10c0c','#3e5eb9','#ffd900'],['#b10c0c','#ffd900','#3e5eb9','#ffd900','#b10c0c']];const H=[[3,1,6,1,3],[3,1,6,1,3],[3,1,6,1,3],[3,1,6,1,3]];
+ const cs=(c,h)=>{let y=0,s='';const t=h.reduce((a,b)=>a+b,0);c.forEach((x,i)=>{const hh=h[i]/t*90;s+=`<rect x="0" y="${y}" width="40" height="${hh}" fill="${x}"/>`;y+=hh});return`<svg viewBox="0 0 40 110" width="44" height="120"><path d="M20 0v10" stroke="#333" stroke-width="2"/><g transform="translate(0 14)">${s}</g><rect x="0" y="14" width="40" height="90" fill="none" stroke="#3a2a22" stroke-width="3" rx="4"/></svg>`};
+ return pickOne('史瓦濟蠟燭',`<p class="pd">耕卉：「我要那根條紋<b>跟國旗一模一樣</b>的！（由上往下）」</p>`,C.map((c,i)=>i===0?{h:cs(c,H[i]),ok:1}:{h:cs(c,H[i]),bad:'耕卉：「顏色不對啦！」'}),4).then(r=>{if(r){get('candle');get('match')}return r})}
+function marketPuzzle(){const steps=[['老闆笑著說：「Sawubona！」',['「Hello，廁所在哪？」','「Yebo, sawubona！」','「Ngiyabonga！」'],1,'老闆聽不懂，只是一直笑。'],['老闆遞給耕卉一塊甜點：「E20。」耕卉看著你。',['付 E20','付 E2000','說「我不買」'],0,'耕卉翻了一個白眼。'],['離開前，該說什麼？',['「Sawubona！」','「Yebo！」','「Ngiyabonga！」'],2,'老闆歪著頭：「……？」']];
+ return panel('曼齊尼市集',`<p class="pd" id="mq"></p><div class="pick" id="mo"></div>`,(el,done)=>{let k=0;const draw=()=>{const[q,o]=steps[k];el.querySelector('#mq').textContent=q;el.querySelector('#mo').innerHTML=o.map((x,i)=>`<button data-i="${i}">${x}</button>`).join('');
+  el.querySelectorAll('#mo [data-i]').forEach(b=>b.onclick=()=>{if(+b.dataset.i===steps[k][2]){click();if(++k===steps.length){ding();done(true)}else draw()}else{oops(steps[k][3]);k=0;draw()}})};draw()})}
+
+/* ===== 旅館 ===== */
+SC.lobby={name:'旅館大廳',hotel:1,desc:'旅館大廳。櫃檯沒有老闆，牆上掛著一幅很大的旅館地圖。',
+ art:()=>{const c3=S.f.ch3;let s=roomBox(c3?{wall:'#7a62a8',low:'#4a3478',floor:'#2a1e40',ceil:'#5a4a80'}:{wall:'#f2dfba',low:'#b07a4a',floor:'#7a5034',ceil:'#ead7b4',pattern:1},11);
+  [[170,'#c9a87a'],[235,'#b8956a'],[300,'#d8b88a']].forEach(([x,c],i)=>s+=`<rect x="${x-26}" y="104" width="52" height="62" fill="#5a3a20"/><rect x="${x-21}" y="109" width="42" height="52" fill="${c}"/>`+T(x,178,['2019','2008','2015'][i],10,c3?'#ddd':'#5a3a20'));
+  s+=`<rect x="352" y="100" width="110" height="80" fill="#fff8e6" stroke="${OL}" stroke-width="4"/><path d="M380 112l30-6 30 14-4 30-30 14-26-12Z" fill="#8fd07a" stroke="#3a6a2a" stroke-width="2"/>`+T(407,196,'史瓦帝尼地圖',11,c3?'#ddd':'#5a3a20');
+  s+=`<rect x="490" y="96" width="160" height="134" fill="#fff8e6" stroke="#7a5034" stroke-width="5"/>`;
+  [[506,112,'101'],[540,112,'102'],[574,112,'103'],[506,190,'108'],[540,190,'109'],[574,190,'113']].forEach(([x,y,n])=>s+=`<rect x="${x}" y="${y}" width="30" height="22" fill="#f3d9a4" stroke="#a07a4a"/>`+T(x+15,y+15,n,9,'#5a3a20'));
+  s+=`<rect x="608" y="112" width="34" height="100" fill="${c3&&!S.f.map?'#555':'#e6dcc8'}"/><rect x="612" y="196" width="26" height="16" fill="#111"/>`+T(625,208,'衛',10,'#fff')+T(570,152,'旅館地圖',12,'#a07a4a');
+  if(c3)s+=`<use href="#P-hx-norm" x="430" y="118" width="130" height="173"/>`;
+  s+=`<rect x="180" y="300" width="440" height="20" fill="url(#woodg)"/><rect x="190" y="320" width="420" height="100" fill="#7a5230" stroke="${OL}" stroke-width="3"/><rect x="520" y="342" width="70" height="30" rx="4" fill="#5a3a20" stroke="#3a2010"/>`+T(555,362,'失物',11,'#ffd23f');
+  s+=`<rect x="214" y="216" width="70" height="86" rx="10" fill="#3a6fb8" stroke="${OL}" stroke-width="4"/><rect x="222" y="226" width="54" height="34" fill="#9fe0ff"/>`+T(249,248,'入住',12,'#062420')+`<rect x="320" y="282" width="80" height="18" fill="#fff8e6" transform="rotate(-4 360 290)"/>`;
+  if(S.f.dark&&!c3)s+=`<rect x="420" y="268" width="60" height="34" rx="6" fill="#2a2a2a" stroke="${OL}" stroke-width="3"/>`+T(450,290,'公事包',10,'#ffd23f');
+  const d=sideDoor('R',690,770,.8);s+=`<polygon points="${d.pts}" fill="#5a3a20" stroke="#3a2010" stroke-width="4"/>`;
+  if(c3)s+=`<use href="#P-gh-norm" x="20" y="220" width="140" height="187"/>`;return s},
+ spots:()=>{const d=sideDoor('R',690,770,.8),c3=S.f.ch3;return[
+  {r:[140,98,190,90],l:'牆上的舊照片',a:c3?photosPanel:()=>msg('三張泛黃的舊照片。照片下面寫著年份。')},
+  {r:[348,96,118,104],l:'史瓦帝尼地圖',a:regionMap},
+  {r:[486,92,168,142],l:'旅館地圖',a:c3?mapPuzzle:()=>{note('hmap','旅館地圖','左邊 101、102、103；右邊 108、109、113；104 到 107 那一大塊是空白的。盡頭是「衛」。');msg('旅館地圖：104 到 107 那一大塊，是空白的。空白的盡頭，只有一個字——「衛」。')}},
+  {r:[210,212,78,94],l:'自助入住機',a:checkIn},
+  {r:[316,276,90,30],l:'房客名冊',a:register},
+  {r:[515,336,80,42],l:'失物招領箱',a:lostFound},
+  ...(S.f.dark&&!c3?[{r:[414,262,72,44],l:'郝翔的公事包',a:briefcase}]:[]),
+  ...(c3?[{r:[430,118,130,170],l:'郝翔',a:hxQuiz},{r:[20,220,140,187],l:'耕卉',a:ghCh3}]:[]),
+  {r:d.r,l:'走廊 →',to:'hall'}]},
+ first:async()=>{await say(script(S2.hotel));msg('（先到「自助入住機」辦入住。）')}};
+function regionMap(){note('region','大廳的史瓦帝尼地圖','四個行政區的編號：1 Hhohho（西北）、2 Manzini（中部）、3 Lubombo（東部）、4 Shiselweni（南部）');
+ return panel('史瓦帝尼地圖',`<svg viewBox="0 0 300 260" style="width:100%;max-width:340px;background:#fff8e6;border-radius:8px"><path d="M60 40l90-20 70 30 30 80-20 90-90 20-70-40-20-80Z" fill="#cfe8a8" stroke="${OL}" stroke-width="4"/><path d="M60 40l90-20 20 90-110 20Z" fill="#8fd07a" stroke="${OL}" stroke-width="2"/><path d="M170 110l50-60 30 80-20 60Z" fill="#ffd23f" stroke="${OL}" stroke-width="2"/><path d="M60 130l110-20 60 80-90 30Z" fill="#7fc6ff" stroke="${OL}" stroke-width="2"/><path d="M50 160l10-30 70 70 30 30-70-20Z" fill="#ff9fb8" stroke="${OL}" stroke-width="2"/>${T(105,80,'① Hhohho',13,'#123')}${T(212,140,'③ Lubombo',13,'#123')}${T(130,165,'② Manzini',13,'#123')}${T(95,215,'④ Shiselweni',12,'#123')}</svg>`)}
+async function checkIn(){if(S.f.cert)return msg('入住完成。螢幕上寫著：「祝您蜜月愉快，有事請找郝翔（收費）」。');
+ if(await keypad('自助入住機','<p class="pd">「歡迎光臨。請輸入您預約的房號。」</p><div class="paper" style="font-size:15px">貪險活寶旅行社　訂房備註：<br>品毫／耕卉　蜜月套房一間。<br><b>蜜月套房的門牌，三個數字加起來剛好是 5。</b></div>',3,'113','「查無此房。」機器吐出一張紙：「輸錯也要收手續費喔。——郝翔」')){S.f.cert=1;get('cert');get('card113');await say(['「嗶。入住完成。」','機器吐出一張「入住證明」，和一張 113 號房的房卡。'])}}
+async function register(){if(!S.f.dark)return doc('reg0','房客名冊','<b>房客名冊</b><br>101 王先生／102（空）／103（空）／108 Mr. Dlamini／109（空）／113 品毫、耕卉（今日）','房客名冊：113 是品毫、耕卉的房間。')
+ ;if(S.f.reg)return msg('名冊上那一行：「阿諾（Arnold）　房號：衛」。');
+ const rows=[['Mr. Dlamini','1 月 3 日','108'],['王先生','9 月 6 日','101'],['（名字被塗掉）','4 月 19 日','衛'],['Ms. Simelane','8 月 24 日','102'],['（名字被塗掉）','12 月 26 日','103']];
+ const ok=await pickOne('房客名冊（舊的那本）',`<p class="pd">櫃檯底下還有一本很舊的名冊。燭光下，有一張紙條夾在裡面：<br>「<b>那位旅客入住的那天，全國都在放假慶祝——那天也是這個國家換名字的日子。</b>」</p>`,rows.map(([n,d,r],i)=>({h:`${n}　｜　入住：${d}　｜　房號：${r}`,ok:i===2,bad:'不是這位。名冊「啪」地闔上。'})),1);
+ if(ok){S.f.reg=1;note('reg','舊名冊上的神秘旅客','4 月 19 日（國王生日、改名的日子）入住。名字被塗掉了，只看得出開頭是「阿」……房號：「衛」。');await say(['名字被塗掉了，只剩下一個「阿」字。','房號那一欄，寫的不是數字。','是一個字——「衛」。']);await searchCheck()}}
+async function lostFound(){if(!S.f.dark)return msg('失物招領箱，上了一個三位數的鎖。');if(S.f.diary)return msg('箱子空了。');
+ if(await keypad('失物招領箱',`<p class="pd">箱子的鎖上貼著一張紙條，是那位旅客的字：<br>「<b>我在每個地方買的衛生紙捲數——照我走過的順序。</b>」</p>`,3,'417','箱子裡傳來一聲很長的屁聲。……錯了。')){S.f.diary=1;get('diary');await say(['箱子打開了。','裡面有一本日記、一張寫著「衛」的舊房卡，還有好幾張紙條。','紙條上寫著：「人可以迷路，但腸子不能等。」']);await diaryPanel();await searchCheck()}}
+function diaryPanel(){note('diary','神秘旅客的日記','旅行社的秘密章，郝翔都放在他的公事包裡，密碼是大家私底下叫他的外號。最後一句：「如果你真的想活著離開，就不要讓她知道你真正想做什麼。」');
+ return panel('神秘旅客的日記',`<div class="paper" style="font-size:16px">2 月 12 日，墨巴本。走了五分鐘，我想上廁所。<br>2 月 13 日，Malkerns。蠟燭很香。廁所也很香。<br>2 月 14 日，曼齊尼。市集的廁所要排隊。<br>……<br>這間旅館真正的廁所，在黑色的門後面。<br>開門要三樣東西。第二樣——旅行社的秘密章——郝翔都放在他的公事包裡。密碼？就是大家私底下叫他的那個外號。<br><br><b>「如果你真的想活著離開，就不要讓她知道你真正想做什麼。」</b></div>`)}
+async function briefcase(){if(S.f.stamp)return msg('公事包裡只剩一疊收費單。');
+ if(await dialLock('郝翔的公事包','<p class="pd">公事包上有一個四格的字鎖，刻著：「郝翔＿＿＿＿」。</p>',[['給','要','愛','吃'],['我','妳','你','他'],['得','的','地','了'],['命','心','魚','錢']],['要','你','的','錢'])){S.f.stamp=1;get('stamp');render();await say(['公事包「喀」地彈開。','裡面躺著一顆木頭印章，刻著「貪險活寶」。','底下壓著一張紙條：「借用印章，每次 E500。——郝」']);await searchCheck()}}
+async function searchCheck(){if(!(S.f.reg&&S.f.diary&&S.f.stamp)||S.f.ch3)return;
+ await say(script(S2.found));['mag','feelist','glass','lit','tphoto','receipt','card113'].forEach(take);S.act='第三章';S.f.ch3=1;S.f.dark=0;await card('第三章','阿諾・「屎」瓦辛格');await go('lobby');await ch3Start()}
+
+SC.hall={name:'走廊',hotel:1,desc:'旅館走廊。門牌號碼亂七八糟，盡頭是那扇黑色的門。',
+ art:()=>{const c3=S.f.ch3;let s=hotelCorridor(c3);
+  [[20,110,'L','101'],[150,210,'L','102'],[236,276,'L','103'],[20,110,'R','108'],[150,210,'R','109'],[236,276,'R','113']].forEach(([a,b,sd,n])=>s+=hDoor(a,b,sd,n,{open:(n==='101'&&S.f.r101)||(n==='109'&&S.f.r109)}).s);
+  s+=`<rect x="290" y="${-20+290*210/340+30}" width="34" height="${(520-290*230/340)-(-20+290*210/340)-120}" fill="#d6b06a" stroke="#7a5034" stroke-width="3"/>`;
+  s+=`<rect x="372" y="206" width="56" height="84" fill="#111" stroke="${OL}" stroke-width="3"/><rect x="386" y="214" width="28" height="22" fill="#ffd23f"/>`+T(400,231,'衛',16,'#111');
+  if(c3)s+=`<rect x="470" y="96" width="150" height="60" rx="6" fill="#fff8e6" opacity=".9"/>`+T(545,120,'Lubombo · Hhohho',12,'#5a2a7a')+T(545,142,'Shiselweni · Manzini',12,'#5a2a7a');
+  return s+`<rect x="300" y="460" width="200" height="40" fill="#3fb6a8" opacity=".85"/>`+T(400,486,'↓ 大廳',14,'#062420')},
+ spots:()=>{const H=(a,b,sd,n,f)=>({r:hDoor(a,b,sd,n).r,l:n,a:f});return[
+  H(20,110,'L','101',async()=>{if(!S.f.ch3)return msg('101 號房。門裡傳來打呼聲。（王先生）');if(S.f.r101)return msg('101 號房裡已經沒有東西了。');if(await keypad('101 號房','<p class="pd">門上貼著：「密碼藏在大廳那三張舊照片裡——照<b>年份從舊到新</b>，數一數。」</p>',3,'523','門後有人說：「你數錯了。」')){S.f.r101=1;render();get('pieceA');await say('101 號房的桌上，放著一片旅館地圖的碎片。背面寫著「Hhohho」。')}}),
+  H(150,210,'L','102',async()=>{if(!S.f.dark)return msg('102 號房。空房。');if(has('tphoto'))return msg('102 號房裡只剩一張空床。');get('tphoto');await tphotoPanel()}),
+  H(236,276,'L','103',async()=>{if(!S.f.dark)return msg('103 號房。空房。門把上掛著：「參觀收費 E10」。');if(has('receipt'))return msg('103 號房的垃圾桶已經翻過了。');get('receipt');await receiptPanel()}),
+  H(20,110,'R','108',()=>msg('108 號房。門上掛著一面史瓦帝尼國旗。Mr. Dlamini 在裡面唱歌。')),
+  H(150,210,'R','109',async()=>{if(!S.f.ch3)return msg('109 號房。空房。');if(S.f.r109)return msg('109 號房裡已經沒有東西了。');if(await keypad('109 號房','<p class="pd">門上的鎖有四格。旁邊的牆上寫著四個地名。</p>',4,'3142','鎖沒有反應。')){S.f.r109=1;render();get('pieceB');await say('109 號房的枕頭底下，壓著一片地圖碎片。背面寫著「Manzini」。')}}),
+  H(236,276,'R','113',()=>S.f.cert?go('room'):msg('113 號房。要先辦好入住才能進去。')),
+  {r:[364,198,72,96],l:'黑色的門',a:blackDoor},
+  ...(S.f.ch3?[{r:[470,96,150,60],l:'牆上的字',a:()=>{note('wall3','走廊牆上的字','Lubombo · Hhohho · Shiselweni · Manzini（旁邊寫著：109）');msg('牆上寫著四個地名：Lubombo、Hhohho、Shiselweni、Manzini。旁邊用小字寫著「109」。')}}]:[]),
+  {r:[300,460,200,40],l:'↓ 大廳',to:'lobby'}]},
+ enter:async()=>{if(S.f.cert&&!S.f.doorTold){S.f.doorTold=1;await say(script(S2.door))}}};
+function tphotoPanel(){note('tphoto','旅客的舊照片（102 號房）','2/12 墨巴本、2/14 曼齊尼市集、2/13 Malkerns 蠟燭店。每張照片裡，他都站在廁所前面。');
+ return panel('旅客的舊照片',`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${[['2 月 14 日','曼齊尼市集','🧺'],['2 月 12 日','墨巴本','🏛'],['2 月 13 日','Malkerns 蠟燭店','🕯']].map(([d,p,e])=>`<div style="background:#fff8e6;color:#3a2a1a;border:5px solid #fff;box-shadow:0 3px 8px #000;padding:6px;border-radius:4px"><div style="font-size:34px">${e}🚻</div><b style="font-size:13px">${p}</b><div style="font-size:12px;color:#a06a40">背面：${d}</div></div>`).join('')}</div><p class="pd">每張照片裡，同一個男人都站在廁所門口，比著大拇指。</p>`)}
+function receiptPanel(){note('receipt','旅客的三張收據（103 號房）','墨巴本超市：衛生紙 ×4／曼齊尼市集：衛生紙 ×7／Malkerns 蠟燭店：衛生紙 ×1。收據上都沒有日期。');
+ return panel('三張收據',`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${[['曼齊尼市集','衛生紙 ×7','E28'],['Malkerns 蠟燭店','香氛蠟燭 ×1<br>衛生紙 ×1','E64'],['墨巴本超市','衛生紙 ×4','E16']].map(([p,i,t])=>`<div class="paper" style="font-size:13px;margin:0;transform:none">${p}<br>${i}<br><b>${t}</b></div>`).join('')}</div><p class="pd">三張收據，都沒有日期。</p>`)}
+
+SC.room={name:'113 號房',hotel:1,desc:'113 號房，蜜月套房。桌上堆滿了今天買的甜點。',
+ art:()=>{let s=roomBox({wall:'#ffe6ee',low:'#e8a0b8',floor:'#9a6a46',ceil:'#ffeef4',pattern:1},21);
+  s+=`<rect x="170" y="250" width="300" height="80" rx="18" fill="#fff" stroke="${OL}" stroke-width="4"/><rect x="170" y="290" width="300" height="70" rx="6" fill="#e2533d" stroke="${OL}" stroke-width="4"/>`;
+  if(S.f.night&&!S.f.ch3)s+=`<use href="#P-gh-happy" x="230" y="190" width="90" height="120"/>${T(350,240,'Zzz',22,'#3a6fb8')}`;
+  s+=`<rect x="520" y="300" width="130" height="16" fill="url(#woodg)"/>`+T(585,290,'🍰🧁🍩',26);
+  s+=`<rect x="300" y="100" width="200" height="120" fill="${S.f.night?'#14203a':'#9fd8ff'}" stroke="${OL}" stroke-width="6"/>`;
+  const d=sideDoor('L',30,110,.78);return s+`<polygon points="${d.pts}" fill="#7a4a2a" stroke="#3a2010" stroke-width="3"/>`},
+ spots:()=>[{r:[170,236,300,130],l:'床',a:()=>msg(S.f.night?'耕卉抱著史迪奇睡得很熟。':'床很軟。品毫的肚子，也很軟。')},
+  {r:[520,260,130,60],l:'甜點',a:()=>msg('耕卉今天買的甜點。每一個都咬了一口。')},
+  {r:[300,100,200,120],l:'窗戶',a:()=>msg(S.f.night?'旅館外面一片黑。':'窗外是史瓦帝尼的草原。')},
+  {r:sideDoor('L',30,110,.78).r,l:'← 走廊',to:'hall'}],
+ first:async()=>{await say(script(S2.night));S.f.night=1;render();msg('（耕卉睡著了。拿著房卡，去走廊盡頭。）')}};
+async function blackDoor(){if(S.f.ch3)return finalDoor();
+ if(!S.f.night)return msg('黑色的門緊閉著。門牌上只有一個字：「衛」。');
+ if(!S.f.dark){await say(script(S2.blackdoor));S.f.dark=1;note('door3','黑色的門','一、客人的入住證明　二、旅行社的秘密章　三、你真正想隱藏的東西');render();return msg('（燈全熄了。好黑……身上有可以照明的東西嗎？）')}
+ return doc('door3','黑色的門','「要進入真正的衛生間，需要找到三樣東西。」<br>一、客人的入住證明。<br>二、旅行社的秘密章。<br>三、你真正想隱藏的東西。')}
+</script>
+
+<script>
+/* ================= 第三章：阿諾・「屎」瓦辛格 ================= */
+async function ch3Start(){await say(script(S3.truth));
+ while(true){const r=await choose('（品毫要怎麼回答？）',['「好啦，付五百。」','「我不玩了！」','「打個折，兩百五？」']);
+  if(r===1)break;
+  if(r===0){await say([['gh','「你瘋了嗎？那是蜜月基金欸！」','gh-roll']]);oops('耕卉搶走了你的錢包。再想一次。');continue}
+  await say([['hx','「蜜月優惠打九折，四百五。」','hx-money'],['ph','「……」']]);oops('越殺越貴。再想一次。')}
+ await say(script(S3.deal));note('ch3','最後一關','房間彼此相連、牆上藏著密碼、古老的照片裡藏著數字、旅館地圖缺了一大片、史迪奇娃娃藏著秘密。');msg('（大廳的燈變成了紫色。去找地圖缺掉的碎片吧。）');save(1)}
+
+function photosPanel(){note('photos','大廳的三張舊照片','2019 年：Hlane 國家公園的犀牛。2008 年：蘆葦舞節的蘆葦束。2015 年：Ngwenya 的玻璃鱷魚。（101 號房：照年份從舊到新，數一數）');
+ const ph=(y,cap,draw)=>`<div style="background:#e8dcc0;border:6px solid #5a3a20;padding:4px;border-radius:4px"><svg viewBox="0 0 160 110" style="width:100%">${draw}</svg><div style="color:#5a3a20;font-weight:900;font-size:13px">${y}<br><small>${cap}</small></div></div>`;
+ const rh=`<rect width="160" height="110" fill="#e8d090"/>`+[30,80,130].map(x=>`<text x="${x}" y="70" font-size="34" text-anchor="middle">🦏</text>`).join('');
+ const reed=`<rect width="160" height="110" fill="#bfe6a0"/>`+[20,50,80,110,140].map(x=>`<path d="M${x} 100V25" stroke="#8a6a2a" stroke-width="7"/><path d="M${x-8} 30q8-14 16 0" fill="#c9a050"/>`).join('');
+ const gl=`<rect width="160" height="110" fill="#d8f4ee"/>`+[50,110].map(x=>`<text x="${x}" y="70" font-size="34" text-anchor="middle">🐊</text>`).join('');
+ return panel('三張舊照片',`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${ph('2019','Hlane 國家公園',rh)}${ph('2008','蘆葦舞節 Umhlanga',reed)}${ph('2015','Ngwenya 玻璃工廠',gl)}</div><p class="pd">照片下面的銅牌：「把它們放回該有的順序。」</p>`)}
+async function hxQuiz(){if(has('pieceC')||S.f.mapDone)return say([['hx',['「地圖碎片要照地圖上的編號放喔。」','「提示 E500，童叟無欺。」'][Math.random()*2|0]]]);
+ await say([['hx','「最後一片地圖碎片在我這裡。」','hx-money'],['hx','「想要？E500。」'],['hx','「……或者，答對我的史瓦帝尼小考，免費。」']]);
+ const Q=[['國王的稱號 Ngwenyama，意思是？',['鱷魚','獅子','大象'],1],['史瓦帝尼的國際電話區碼是？',['+27','+886','+268'],2],['史瓦帝尼比台灣慢幾個小時？',['2 小時','6 小時','8 小時'],1]];
+ const ok=await panel('郝翔的史瓦帝尼小考',`${Q.map(([q,o],i)=>`<div style="text-align:left;margin:8px 0"><b>${i+1}. ${q}</b><div class="row" style="justify-content:flex-start">${o.map((x,j)=>`<button data-q="${i}" data-j="${j}">${x}</button>`).join('')}</div></div>`).join('')}<button class="btn-y" id="sub">交卷</button>`,(el,done)=>{const v=[-1,-1,-1];
+  el.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{v[+b.dataset.q]=+b.dataset.j;el.querySelectorAll(`[data-q="${b.dataset.q}"]`).forEach(x=>x.style.borderColor=x===b?'#ffd23f':'');click()});
+  el.querySelector('#sub').onclick=()=>{if(v.every((x,i)=>x===Q[i][2])){ding();done(true)}else oops('郝翔：「有錯喔。改考卷費 E10。」')}});
+ if(!ok)return;get('pieceC');await say([['hx','「……全對。」'],['hx','「拿去吧。真不想給你。」']])}
+async function ghCh3(){await say([['gh',['「找到了沒？」','「你今天好像特別認真。」','「史迪奇好像怪怪的，背後鼓鼓的。」','「我想吃甜點。」'][Math.random()*4|0]]])}
+async function mapPuzzle(){if(S.f.map)return doc('map3','完整的旅館地圖','地圖補齊了。104 到 107 那一塊，畫著好幾間互相連通的房間，每一扇門都塗了顏色。<br>角落寫著：<b>「照國旗由上而下的顏色，穿過相連的房間。」</b>','完整的旅館地圖：104 到 107 是互相連通的房間，門都塗了顏色。「照國旗由上而下的顏色，穿過相連的房間。」');
+ const n=['pieceA','pieceB','pieceC'].filter(has).length;if(n<3)return msg(`旅館地圖缺了一大片。你手上只有 ${n} 片碎片。`);
+ const ok=await orderTap('把碎片放回旅館地圖',`<p class="pd">地圖上缺了三個洞，旁邊寫著 ①、②、③。<br>碎片背面各寫著一個史瓦帝尼的地名。</p>`,['🧩 Lubombo','🧩 Hhohho','🧩 Manzini'],[1,2,0],'碎片卡不進去。順序不對。',3);
+ if(!ok)return;S.f.map=1;S.f.mapDone=1;take('pieceA');take('pieceB');take('pieceC');render();await mapPuzzle()}
+function flagMaze(){const ANS=['藍','黃','紅','黃','藍'],C={藍:'#3e5eb9',黃:'#ffd900',紅:'#b10c0c'};
+ return panel('相連的房間',`<p class="pd" id="fm"></p><div class="row" id="fd"></div><p class="pd" id="fp"></p>`,(el,done)=>{let k=0;
+ const draw=()=>{const opts=['藍','黃','紅'].sort(()=>Math.random()-.5);el.querySelector('#fm').innerHTML=`第 ${k+1} 間房間。眼前有三扇門。`;el.querySelector('#fp').textContent='走過的門：'+ANS.slice(0,k).join(' → ');
+  el.querySelector('#fd').innerHTML=opts.map(c=>`<button data-c="${c}" style="width:80px;height:120px;background:${C[c]};border:4px solid #3a2a22;border-radius:40px 40px 6px 6px;color:${c==='黃'?'#3a2200':'#fff'};font-weight:900">${c}</button>`).join('');
+  el.querySelectorAll('[data-c]').forEach(b=>b.onclick=async()=>{if(b.dataset.c===ANS[k]){click();if(++k===ANS.length){ding();await sl(400);done(true)}else draw()}else{k=0;oops('門後是一面牆。品毫撞了一下，又回到了第一間房間。');draw()}})};draw()})}
+async function finalDoor(){
+ if(!S.f.map)return msg('黑色的門前面，房間彼此相連，像一座迷宮。旅館地圖缺了一大片，走進去一定會迷路。');
+ if(!S.f.maze){if(!await flagMaze())return;S.f.maze=1;await say('品毫穿過最後一扇藍色的門。黑色的門，就在眼前。')}
+ if(!S.f.stitch){await say([['gh','「品毫，你看。史迪奇的背後，好像縫了什麼東西。」']]);await say(script(S3.stitch));S.f.stitch=1;note('stitch','史迪奇背後的紙條','「真正的出口，永遠就在你最想去的地方。」');save(1)}
+ if(!has('note3')){if(!await notePanel())return;get('note3')}
+ if(await devicePanel()){take('cert');take('stamp');take('note3');await ending()}}
+const TILES=['想','愛','上','我','出','妳','所','只','口','是','找','廁'];
+function notePanel(){return panel('第三樣東西',`<p class="pd">裝置的第三個格子寫著：「<b>你真正想隱藏的東西</b>」。<br>旁邊放著一支筆和一張空白的紙條。品毫要寫什麼？</p><div class="slot" id="sl"></div><div class="tiles">${TILES.map((c,i)=>`<button data-i="${i}">${c}</button>`).join('')}</div><div class="row"><button id="bk">⌫ 擦掉</button><button class="btn-y" id="ok">寫好了</button></div>`,(el,done)=>{let seq=[];const sl=el.querySelector('#sl');
+ const draw=()=>{sl.textContent=seq.map(i=>TILES[i]).join('');el.querySelectorAll('[data-i]').forEach(b=>b.classList.toggle('on',seq.includes(+b.dataset.i)))};
+ el.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(seq.includes(i))return;seq.push(i);click();draw()});
+ el.querySelector('#bk').onclick=()=>{seq.pop();draw()};
+ el.querySelector('#ok').onclick=()=>{const s=seq.map(i=>TILES[i]).join('');if(s==='我只是想上廁所')return done(true);
+  oops(s.includes('愛')?'紙條被彈了回來。裝置說：「這是你真正想說的，不是你想『隱藏』的。」':'裝置發出「嗶——」的一聲。這不是你真正想隱藏的東西。');seq=[];draw()};draw()})}
+function devicePanel(){const items=[['note3','品毫寫的紙條'],['cert','入住證明'],['stamp','旅行社秘密章']];
+ return panel('黑色的門・裝置',`<p class="pd">門旁的裝置上有三個格子。要照什麼順序放進去？</p><div class="pick" style="grid-template-columns:repeat(3,1fr)">${items.map(([k,n],i)=>`<button data-i="${i}" style="text-align:center"><div style="width:50px;margin:auto">${icon(IT[k].i)}</div>${n}</button>`).join('')}</div><button id="rs">重新放</button>`,(el,done)=>{let seq=[];const bs=[...el.querySelectorAll('[data-i]')],ans=[1,2,0];
+ const draw=()=>bs.forEach((b,i)=>{b.querySelector('sup')?.remove();const k=seq.indexOf(i);b.style.borderColor=k>=0?'#ffd23f':'';if(k>=0)b.insertAdjacentHTML('beforeend',`<sup style="color:#ffd23f"> ${k+1}</sup>`)});
+ bs.forEach((b,i)=>b.onclick=async()=>{if(seq.includes(i))return;seq.push(i);click();draw();if(seq.length===3){if(seq.join()===ans.join()){ding();await sl(500);done(true)}else{seq=[];draw();oops('裝置把東西全吐了出來。順序不對。')}}});
+ el.querySelector('#rs').onclick=()=>{seq=[];draw()}})}
+</script>
+
+<script>
+/* ================= 通用鎖 ================= */
+function shakeEl(e){if(!e)return;e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake')}
+function keypad(title,desc,n,ans,wrong){return panel(title,`${desc}<div class="kpd"><div class="kdisp">${'<i></i>'.repeat(n)}</div><div class="kgrid">${[1,2,3,4,5,6,7,8,9,'⌫',0,'✓'].map(k=>`<button data-k="${k}">${k}</button>`).join('')}</div></div>`,(el,done)=>{let v='';
+ const d=()=>el.querySelectorAll('.kdisp i').forEach((x,i)=>x.textContent=v[i]||'');
+ el.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{const k=b.dataset.k;if(k==='⌫'){v=v.slice(0,-1);click()}else if(k==='✓'){if(v===ans){ding();setTimeout(()=>done(true),500);return}v='';shakeEl(el.querySelector('.kpd'));oops(wrong)}else if(v.length<n){v+=k;tone(600+ +k*40,.08,'square',.05)}d()});d()})}
+function dialLock(title,desc,wheels,ans){return panel(title,`${desc}<div class="padlock"><div class="shackle"></div><div class="lbody"><div class="wheels">${wheels.map(()=>`<div class="wh"><button class="up">▲</button><div class="wv"></div><button class="dn">▼</button></div>`).join('')}</div></div></div><button class="btn-y" id="pull">拉開</button>`,(el,done)=>{
+ const v=wheels.map(()=>0),L=i=>wheels[i].length;
+ const draw=()=>el.querySelectorAll('.wh').forEach((w,i)=>{const W=wheels[i];w.querySelector('.wv').innerHTML=`<span>${W[(v[i]+L(i)-1)%L(i)]}</span><b>${W[v[i]]}</b><span>${W[(v[i]+1)%L(i)]}</span>`});
+ el.querySelectorAll('.wh').forEach((w,i)=>{w.querySelector('.up').onclick=()=>{v[i]=(v[i]+L(i)-1)%L(i);click();draw()};w.querySelector('.dn').onclick=()=>{v[i]=(v[i]+1)%L(i);click();draw()}});draw();
+ el.querySelector('#pull').onclick=async()=>{if(v.every((x,i)=>wheels[i][x]===ans[i])){el.querySelector('.padlock').classList.add('open');ding();await sl(700);done(true)}else{shakeEl(el.querySelector('.padlock'));oops('鎖紋風不動。')}}})}
+
+function pickOne(title,desc,items,cols=1){return panel(title,`${desc}<div class="pick" style="grid-template-columns:repeat(${cols},1fr)">${items.map((it,i)=>`<button data-i="${i}" style="text-align:center">${it.h}</button>`).join('')}</div>`,(el,done)=>{
+ el.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{const it=items[+b.dataset.i];click();if(it.ok){ding();setTimeout(()=>done(true),400)}else oops(it.bad||'不對喔。')})})}
+function orderTap(title,desc,items,ans,wrong,cols=4){return panel(title,`${desc}<div class="pick" style="grid-template-columns:repeat(${cols},1fr)">${items.map((h,i)=>`<button data-i="${i}" style="text-align:center">${h}</button>`).join('')}</div><button id="rs">重新開始</button>`,(el,done)=>{let seq=[];const bs=[...el.querySelectorAll('[data-i]')];
+ const draw=()=>bs.forEach((b,i)=>{b.querySelector('sup')?.remove();const k=seq.indexOf(i);b.style.borderColor=k>=0?'#ffd23f':'';if(k>=0)b.insertAdjacentHTML('beforeend',`<sup style="color:#ffd23f"> ${k+1}</sup>`)});
+ bs.forEach((b,i)=>b.onclick=async()=>{if(seq.includes(i))return;seq.push(i);click();draw();if(seq.length===ans.length){if(seq.every((x,k)=>x===ans[k])){ding();await sl(500);done(true)}else{seq=[];draw();oops(wrong)}}});
+ el.querySelector('#rs').onclick=()=>{seq=[];draw()}})}
+
+/* ================= 檢查物品 ================= */
+async function examine(k){const it=IT[k];
+ if(k==='mag')return magPanel();
+ if(k==='feelist')return panel(it.n,`<div class="paper" style="font-size:15px">${feeTable()}</div>`);
+ if(k==='diary')return diaryPanel();
+ if(k==='tphoto')return tphotoPanel();
+ if(k==='receipt')return receiptPanel();
+ if(k==='candle'||k==='match'){if(!(has('candle')&&has('match')))return panel(it.n,`<div style="width:110px;margin:auto">${icon(it.i)}</div><p class="pd">${it.d}</p>`);
+  const r=await panel(it.n,`<div style="width:110px;margin:auto">${icon(it.i)}</div><p class="pd">${it.d}</p><button class="btn-y" id="lt">🔥 用火柴點亮蠟燭</button>`,(el,done)=>{el.querySelector('#lt').onclick=()=>done(true)});
+  if(r){take('candle');take('match');get('lit');render();msg('蠟燭亮了。國旗顏色的條紋，在黑暗裡閃著小小的光。')}return}
+ return panel(it.n,`<div style="width:110px;margin:auto">${icon(it.i)}</div><p class="pd">${it.d}</p>`)}
+
+/* ================= 郝翔的提示（每次 500 元） ================= */
+function hint(){const f=S.f;
+ if(!f.ch2){if(!has('mag'))return'耕卉的椅背口袋裡有一本機上雜誌。要翻她的口袋，藉口得跟她最愛的東西有關——飲料、甜點。';
+  if(!f.doc)return'雜誌只告訴你國王跟國家同一年出生。要知道是哪一天改名的，看看 A 座的機上娛樂。耳機在耕卉那裡。';
+  return'國王跟國家同一年出生，在他 50 歲生日那天改名。我的貼紙……別信。'}
+ if(!f.immig)return'入境卡：正式國名是新的那個；行政首都和最大城市不一樣；當地貨幣不是蘭特。雜誌都有寫。';
+ if(!f.total)return'收費單只算打勾的，有乘號的先乘。';
+ if(!f.paid)return'先用最大的鈔票，再慢慢補零頭。我不找零。';
+ if(f.stop!==undefined&&!f.tourDone){const i=f.stop;return['國旗由上而下是藍、黃、紅、黃、藍，紅色最寬，盾牌是橫的。','照日期排：4 月、8 月、9 月、12 月。','舞者只跳一次：踏腳、拍手、踏腳、舉盾、跳、拍手。','數清楚陸地上的斑馬、疣豬、黑斑羚，水裡的鱷魚不算。','Ngwenya 是鱷魚，國王的稱號 Ngwenyama 是獅子。','蠟燭條紋要跟國旗一樣，由上而下：藍、黃、紅、黃、藍。','先回應 Sawubona，付錢，最後說謝謝。'][i]}
+ if(!f.cert)return'蜜月套房：門牌三個數字加起來是 5。';
+ if(!f.night)return'去 113 號房休息吧。';
+ if(!f.dark)return'晚上，去走廊盡頭那扇黑色的門。';
+ if(!has('lit')&&!f.ch3)return'太黑了。你在蠟燭店拿到了什麼？兩樣一起「檢查」。';
+ if(!f.reg)return'櫃檯下面那本舊名冊。那位旅客入住的那天，也是這個國家改名的日子。';
+ if(!f.diary)return'102 號房的照片有日期，103 號房的收據有捲數。照日期排好收據。';
+ if(!f.stamp)return'日記說：公事包的密碼是我的外號。大家私底下都叫我什麼？';
+ if(!f.r101)return'大廳的舊照片照年份從舊到新排，再數每張照片裡的東西有幾個。';
+ if(!f.r109)return'走廊牆上的四個地名，對照大廳那張史瓦帝尼地圖上的編號。';
+ if(!has('pieceC')&&!f.map)return'最後一片碎片在我身上。答對我的小考就送你——雜誌裡都有答案。';
+ if(!f.map)return'碎片背面的地名，對照大廳史瓦帝尼地圖的編號 ①②③。';
+ if(!f.maze)return'照國旗由上而下的顏色選門：藍、黃、紅、黃、藍。';
+ if(!has('note3'))return'日記說：「不要讓她知道你真正想做什麼。」你今天真正想做的，一直都是同一件事。';
+ return'黑色的門寫了順序：一、入住證明；二、秘密章；三、你真正想隱藏的東西。'}
+/* ================= 結局 ================= */
+async function ending(){S.f.done=1;await say(script(ENDING));S.on=0;ambient('none');clr();if(window.SD)SD.clear(S.rid,S.t,S.hints||0,S.borrows||0);
+ $('#endh').textContent='蜜月完成！';$('#endp').innerHTML=`錢包還剩 ${S.money.toLocaleString()} 元<br>跟郝翔買了 ${S.hints} 次提示・跟耕卉借了 ${S.borrows} 次錢`;$('#endt').textContent='逃脫時間 '+fmt(S.t)+(S.t<=GOAL?'　🏆 60 分鐘內完成！':'');show('end')}
+
+/* ================= 選單 ================= */
+$('#bMenu').onclick=()=>{if(busy)return;panel('選單',`<div class="row" style="flex-direction:column"><button id="m1">💾 存檔</button><button id="m2">${snd?'🔇 關閉音效':'🔊 開啟音效'}</button><button id="m3">回到標題</button><button id="m4">回到第柒門大廳</button></div>`,(el,done)=>{
+ el.querySelector('#m1').onclick=()=>{done();busy=0;save(1);toast('💾 已存檔')};
+ el.querySelector('#m2').onclick=()=>{snd=!snd;ambient(snd?(SC[S.sc].amb||'hotel'):'none');done()};
+ el.querySelector('#m3').onclick=()=>{done();toTitle()};el.querySelector('#m4').onclick=()=>{done();toLobby()}})};
+
+/* ================= 開始 ================= */
+function refreshTitle(){$('#ctw').style.display=hasSave()?'':'none'}
+function toTitle(){save(1);if(S)S.on=0;busy=0;tapR=null;closePanels();ambient('none');show('title');refreshTitle()}
+async function newGame(){if(hasSave()&&!$('#fail').classList.contains('on')&&!confirm('開始新遊戲會覆蓋目前的存檔，確定嗎？'))return;clr();S=fresh();busy=0;sel=null;tapR=null;
+ const me=S;if(window.SD)SD.begin().then(id=>{me.rid=id;save(1)});
+ show('game');S.f.v_seat=1;render();ambient('plane');await card('第一章','史瓦帝尼的第一個秘密');
+ const OP=script(OPENING),cut=OP.indexOf('就在他即將抵達廁所時——');
+ await say(OP.slice(0,cut));S.sc='door';S.f.v_door=1;render();await say(OP.slice(cut));
+ await say([['gh','「算了。我回座位等你，快一點喔。」'],'耕卉抱著史迪奇走回第 17 排。',['ph','（只要跟飲料、甜點有關，耕卉就什麼都不會懷疑……先看看螢幕上寫什麼。）','ph-pain']]);
+ note('rule','品毫的生存法則','只要跟飲料、甜點有關，耕卉就什麼都不會懷疑。');msg('（點擊畫面上的東西來調查。上方 💡 可以花 500 元跟郝翔買提示。）');save(1)}
+function loadGame(){let d;try{d=JSON.parse(localStorage.getItem(SK))}catch(e){}if(!d||!SC[d.sc]){clr();refreshTitle();return}
+ S=d;S.on=1;busy=0;sel=null;tapR=null;show('game');render();ambient(SC[S.sc].amb||'hotel');msg('（已讀取存檔。品毫的肚子，還在痛。）')}
+$('#bNew').onclick=()=>{ac();newGame()};$('#bCont').onclick=()=>{ac();loadGame()};$('#bDel').onclick=()=>{clr();refreshTitle()};
+buildPortraits();
+$('#cast').innerHTML=[['ph-norm','品毫'],['gh-norm','耕卉'],['hx-norm','郝翔']].map(([k,n])=>`<div>${use(k)}${n}</div>`).join('');
+refreshTitle();
+setTimeout(()=>{const h=document.getElementById('sd-hide');if(h&&!window.SD){h.remove();document.body.innerHTML='<div class="scr on"><h1>連線失敗</h1><p>無法確認你的角色，請重新整理，或回到大廳重新進入。</p><div class="row"><button onclick="location.reload()">重新整理</button><button onclick="location.href=LOBBY">回到大廳</button></div></div>'}},12000);
+</script>
+
+<!-- 第柒門：沒有註冊 / 沒有角色就送回大廳；記錄遊玩與通關時間 -->
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const LOBBY = 'https://hao-yuliu.github.io/escape-room/', SLUG = 'pupu';
+const sb = createClient('https://umlnwzpmjxktfzjvcbts.supabase.co', 'sb_publishable_8J3VI8dijlCccHQbXPfCQQ_v_O0Au3w');
+
+const { data: { session } } = await sb.auth.getSession();
+const user = session?.user ?? null;
+const { data: profile } = user
+  ? await sb.from('profiles').select('username').eq('id', user.id).maybeSingle()
+  : { data: null };
+
+if (!user || !profile) {
+  location.replace(`${LOBBY}?need=player&room=${SLUG}#rooms`);
+} else {
+  const { data: game } = await sb.from('games').select('id').eq('slug', SLUG).maybeSingle();
+  const begin = async () => {
+    if (!game) return null;
+    const { data } = await sb.from('play_records').insert({ user_id: user.id, game_id: game.id }).select('id').single();
+    return data?.id ?? null;
+  };
+  const finish = async (rid, fields) => {
+    if (!game) return;
+    rid = rid || await begin();
+    if (rid) await sb.from('play_records').update({ ...fields, updated_at: new Date().toISOString() }).eq('id', rid);
+  };
+  window.SD = {
+    player: profile,
+    begin,
+    clear: (rid, secs, hints, borrows) => finish(rid, { status: 'cleared', clear_time_sec: secs, hints, borrows }),
+    fail: (rid, secs, hints, borrows) => finish(rid, { status: 'failed', clear_time_sec: null, hints, borrows }),
+  };
+  document.getElementById('who').textContent = `旅客：${profile.username}`;
+  document.getElementById('sd-hide').remove();
+}
+</script>
+</body></html>
