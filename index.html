@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>「屎」瓦帝尼｜第柒門</title>
+<title>「屎」瓦帝尼｜夜語工作室</title>
 <style id="sd-hide">body{visibility:hidden}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=LXGW+WenKai+TC&display=swap" rel="stylesheet">
@@ -156,7 +156,7 @@ body.sk #game{animation:skk .09s 5}
 <div id="title" class="scr on">
  <div class="tposter"><img src="https://umlnwzpmjxktfzjvcbts.supabase.co/storage/v1/object/public/covers/pupu.jpg" alt="「屎」瓦帝尼"></div>
  <div class="tside">
-  <div class="tbrand">第柒門　×　貪險活寶旅行社</div>
+  <div class="tbrand">夜語工作室　×　貪險活寶旅行社</div>
   <h1 class="tt"><b>「屎」</b>瓦帝尼</h1>
   <div class="tchap">史瓦帝尼・我們的蜜月旅行</div>
   <p id="who"></p>
@@ -164,7 +164,7 @@ body.sk #game{animation:skk .09s 5}
   <div class="rules">💰 品毫有 <b>5000 元</b>。花 500 元跟郝翔買提示，時間 +60 秒。<br>🙏 錢花光了，可以跟耕卉借 3000 元，時間 +15 分鐘。<br>⏱ 挑戰 <b>60 分鐘</b>內完成！不限時間，可以慢慢玩。</div>
   <button class="btn-y big" id="bNew">出發去蜜月！</button>
   <div id="ctw"><button id="bCont">▶ 繼續旅行</button><button id="bDel">刪除存檔</button></div>
-  <button onclick="toLobby()">← 回到第柒門大廳</button>
+  <button onclick="toLobby()">← 回到夜語工作室大廳</button>
  </div>
 </div>
 
@@ -1340,7 +1340,7 @@ async function ending(){S.f.done=1;await say(script(ENDING));S.on=0;ambient('non
  $('#endh').textContent='蜜月完成！';$('#endp').innerHTML=`錢包還剩 ${S.money.toLocaleString()} 元<br>跟郝翔買了 ${S.hints} 次提示・跟耕卉借了 ${S.borrows} 次錢`;$('#endt').textContent='逃脫時間 '+fmt(S.t)+(S.t<=GOAL?'　🏆 60 分鐘內完成！':'');show('end')}
 
 /* ================= 選單 ================= */
-$('#bMenu').onclick=()=>{if(busy)return;panel('選單',`<div class="row" style="flex-direction:column"><button id="m1">💾 存檔</button><button id="m2">${snd?'🔇 關閉音效':'🔊 開啟音效'}</button><button id="m3">回到標題</button><button id="m4">回到第柒門大廳</button></div>`,(el,done)=>{
+$('#bMenu').onclick=()=>{if(busy)return;panel('選單',`<div class="row" style="flex-direction:column"><button id="m1">💾 存檔</button><button id="m2">${snd?'🔇 關閉音效':'🔊 開啟音效'}</button><button id="m3">回到標題</button><button id="m4">回到夜語工作室大廳</button></div>`,(el,done)=>{
  el.querySelector('#m1').onclick=()=>{done();busy=0;save(1);toast('💾 已存檔')};
  el.querySelector('#m2').onclick=()=>{snd=!snd;ambient(snd?(SC[S.sc].amb||'hotel'):'none');done()};
  el.querySelector('#m3').onclick=()=>{done();toTitle()};el.querySelector('#m4').onclick=()=>{done();toLobby()}})};
@@ -1364,7 +1364,7 @@ refreshTitle();
 setTimeout(()=>{const h=document.getElementById('sd-hide');if(h&&!window.SD){h.remove();document.body.innerHTML='<div class="scr on"><h1>連線失敗</h1><p>無法確認你的角色，請重新整理，或回到大廳重新進入。</p><div class="row"><button onclick="location.reload()">重新整理</button><button onclick="location.href=LOBBY">回到大廳</button></div></div>'}},12000);
 </script>
 
-<!-- 第柒門：沒有註冊 / 沒有角色就送回大廳；記錄遊玩與通關時間 -->
+<!-- 夜語工作室：沒有註冊 / 沒有角色就送回大廳；記錄遊玩與通關時間 -->
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const LOBBY = 'https://hao-yuliu.github.io/escape-room/', SLUG = 'pupu';
